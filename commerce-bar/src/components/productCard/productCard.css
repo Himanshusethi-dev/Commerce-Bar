@@ -1,0 +1,8 @@
+.productGrid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.collectionProductList{
+    margin-top: 20px;
+}
