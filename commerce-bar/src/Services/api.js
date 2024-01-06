@@ -102,11 +102,12 @@ const shopifyStorefront = axios.create({
     return response.data.data.collections.edges
   }
 
-  export const getCollectionByHandle = async (handle,sortParam='MANUAL',order='false')=>{
-    
+  export const getCollectionByHandle = async (handle,sortParam='MANUAL',order='false',filterArray)=>{
 
-    console.log(sortParam,order)
+    if(filterArray.length < 1){
 
+      filterArray = null
+    }
     const query = `
     
     
@@ -119,8 +120,7 @@ const shopifyStorefront = axios.create({
         image{
           url
         }
-        
-        products(first:10,sortKey:${sortParam},reverse:${order}){
+        products(first:10,sortKey:${sortParam},reverse:${order},filters:${JSON.stringify(filterArray).replace(/\"([^(\")"]+)\":/g, '$1:')}){
           edges{
             node{
               handle
@@ -170,6 +170,8 @@ const shopifyStorefront = axios.create({
 
     `
 
+
+    //  console.log(query)
 
       try {
         const response = await shopifyStorefront.post('', { query });

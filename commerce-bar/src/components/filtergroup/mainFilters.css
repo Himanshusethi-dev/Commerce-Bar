@@ -1,0 +1,63 @@
+.mainFilters {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding-left: 10px;
+    width: 200px;
+}
+
+.filterLabel svg{
+    width:25px;
+    height:25px;
+}
+
+.filterLabel .listFilter,.filterLabel .filterPriceRange{
+
+    display: flex;
+}
+
+.rangeBar{
+    width: 150px;
+    height: 9px;
+    background: white;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+.rangeSlider{
+    position: relative;
+}
+.sliderButton{
+    background: red;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border-radius: 50%;
+    top: -2px;
+}
+.sliderButton.minButton {
+    left: 0;
+}
+.sliderButton.maxButton {
+    right: 0;
+}
+
+.inputRangeContainer{
+    display: flex;
+    gap: 10px;
+    align-items: center;    
+}
+
+.filterItem {
+    width: 100%;
+    text-align: left;
+}

@@ -11,6 +11,7 @@ const ProductList = () => {
 
     const [sortOrder, setSortOrder] = useState(false);
     const [sortvalue, setSortValue] = useState('MANUAL');
+    const [allFilters,setAllFilters] = useState([])
     const [data, setData] = useState(null)
 
     const params = new useParams();
@@ -23,15 +24,29 @@ const ProductList = () => {
         setSortOrder(sortArgObj.reverse)
     }
 
+    const getAllSelectedFilters = (selectedFilters)=>{
+
+
+        // console.log(selectedFilters);
+
+        setAllFilters(selectedFilters)
+
+    }
+
+    useEffect(()=>{
+        console.log(allFilters)
+
+    },[allFilters])
+
     useEffect(() => {
 
         getAllProducts()
 
-    }, [sortvalue, sortOrder])
+    }, [sortvalue, sortOrder,allFilters])
 
     const getAllProducts = async () => {
 
-        const resp = await getCollectionByHandle(JSON.stringify(handle), sortvalue, sortOrder);
+        const resp = await getCollectionByHandle(JSON.stringify(handle), sortvalue, sortOrder,allFilters );
         console.log(resp)
         setData(resp)
     }
@@ -69,7 +84,7 @@ const ProductList = () => {
 
 
                     <div className="mainFilters">
-                         <MainFilters  data={data}  />
+                         <MainFilters getAllSelectedFilters={getAllSelectedFilters} data={data}  />
                     </div>
 
                     
