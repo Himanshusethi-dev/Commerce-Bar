@@ -1,8 +1,21 @@
 .productGrid {
-    display: flex;
     flex-wrap: wrap;
+    display: flex;
 }
 
+.ProductCard {
+    width: 33%;
+    flex: 0 0 33%;
+}
+.productDiscount {
+    background: white;
+    color: black;
+    width: 149px;
+    padding: 5px;
+    border-radius: 7px;
+    font-weight: 600;
+    margin: auto;
+}
 .collectionProductList{
     margin-top: 20px;
 }

@@ -3,6 +3,9 @@
     flex-direction: column;
     align-items: flex-start;
     padding-left: 40px;
+    flex: 0 0 18%;
+    width: 18%;
+    overflow: hidden;
 }
 
 .filterGroup {
@@ -10,8 +13,14 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 20px;
-    padding-left: 10px;
-    width: 200px;
+    width: auto;
+}
+
+.filterInner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
 }
 
 .filterLabel svg{
@@ -53,6 +62,7 @@
 
 .inputRangeContainer{
     display: flex;
+    flex-direction: column;
     gap: 10px;
     align-items: center;    
 }
@@ -60,4 +70,31 @@
 .filterItem {
     width: 100%;
     text-align: left;
+}
+
+.minMaxValueContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid white;
+    background-color: white;
+}
+
+.minPriceVal ,.maxPriceVal  {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: white;
+    color:black;
+    display: flex;
+    align-items: center;
+}
+.applyFilterButton{
+    background-color: white;
+    color: black;
+    border-radius: unset;
+    width: 150px;
+}
+.productsListGroup {
+    display: flex;
+    gap: 10px;
 }
