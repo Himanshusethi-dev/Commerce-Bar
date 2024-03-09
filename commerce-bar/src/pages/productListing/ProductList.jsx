@@ -10,9 +10,9 @@ import { updateFilter } from '../../store/slices/filterSlice'
 import {useDispatch,useSelector} from 'react-redux'
 
 const ProductList = () => {
-    const savedFiltstring = localStorage.getItem("allFiltersData")
-    const savedFilt = JSON.parse(savedFiltstring)
-    console.log(savedFilt)
+    // const savedFiltstring = localStorage.getItem("allFiltersData")
+    // const savedFilt = JSON.parse(savedFiltstring)
+    // console.log(savedFilt)
 
      const {filters} = useSelector((state)=>state.collectionFilter)
     const [sortOrder, setSortOrder] = useState(false);
