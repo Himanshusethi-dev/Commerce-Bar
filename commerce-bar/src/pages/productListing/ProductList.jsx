@@ -6,22 +6,16 @@ import placeholderImage from '../../assets/placeholderImage.png'
 import ProductCard from '../../components/productCard/ProductCard'
 import Filter from '../../components/filter/Filter'
 import MainFilters from '../../components/filtergroup/MainFilters'
-import { updateFilter } from '../../store/slices/filterSlice'
-import {useDispatch,useSelector} from 'react-redux'
-
 const ProductList = () => {
-    // const savedFiltstring = localStorage.getItem("allFiltersData")
+    // const savedFiltstring = localStorage.getItem("allFilters")
     // const savedFilt = JSON.parse(savedFiltstring)
     // console.log(savedFilt)
-
-     const {filters} = useSelector((state)=>state.collectionFilter)
     const [sortOrder, setSortOrder] = useState(false);
     const [sortvalue, setSortValue] = useState('MANUAL');
     const [allFilters,setAllFilters] = useState([])
     const [data, setData] = useState(null)
     const params = new useParams();
     const { handle } = params;
-    const dispatch = useDispatch();
     const getSortParams = (sortArg) => {
         const sortArgObj = JSON.parse(sortArg)
         setSortValue(sortArgObj.sort)
@@ -36,31 +30,23 @@ const ProductList = () => {
         console.log(allFilters)
     },[allFilters])
 
-    useEffect(()=>{
-        setAllFilters(filters["allFilters"])
-        setSortValue(filters["sortvalue"])
-        setSortOrder(filters["sortOrder"])
-    },[])
-
     useEffect(() => {
         getAllProducts()
     }, [sortvalue, sortOrder,allFilters])
 
     const getAllProducts = async () => {
          let filt = [sortvalue, sortOrder,allFilters]
-        let filtObject = 
-        {
-            sortvalue,
-            sortOrder,
-            allFilters
-        }
+        // let filtObject = 
+        // {
+        //     sortvalue,
+        //     sortOrder,
+        //     allFilters
+        // }
        
         const resp = await getCollectionByHandle(JSON.stringify(handle),...filt);
         console.log(resp)
         setData(resp)
-        // localStorage.setItem('allFiltersData',JSON.stringify(filtObject))
-
-        dispatch(updateFilter(filtObject))
+        // localStorage.setItem('allFilters',JSON.stringify(filt))
     }
 
     return (

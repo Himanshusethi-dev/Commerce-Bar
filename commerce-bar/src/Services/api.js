@@ -1,63 +1,59 @@
 import axios from "axios";
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const shopifyAccessToken = import.meta.env.VITE_REACT_APP_API_KEY;
 
 const shopifyStorefront = axios.create({
-    baseURL: apiUrl,
-    headers: {
-      'X-Shopify-Storefront-Access-Token': shopifyAccessToken,
-      'Content-Type': 'application/json',
-    },
-  });
+  baseURL: apiUrl,
+  headers: {
+    "X-Shopify-Storefront-Access-Token": shopifyAccessToken,
+    "Content-Type": "application/json",
+  },
+});
 
-  export const getProductsQuery = async ()=>{
+// export const getProductsQuery = async () => {
+//   const query = `
+//     {
+//         products(first: 10) {
+//           edges {
+//             node {
+//               id
+//               title
+//               description
+//               handle
+//               images(first: 1) {
+//                 edges {
+//                   node {
+//                     originalSrc
+//                   }
+//                 }
+//               }
+//               variants(first: 2) {
+//                 edges {
+//                   node {
+//                     id
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//     }
+//   `;
 
-    const query = `
-    {
-        products(first: 10) {
-          edges {
-            node {
-              id
-              title
-              description
-              handle
-              images(first: 1) {
-                edges {
-                  node {
-                    originalSrc
-                  }
-                }
-              }
-              variants(first: 2) {
-                edges {
-                  node {
-                    id
-                  }
-                }
-              }
-            }
-          }
-        }
-    }
-  `;
+//   try {
+//     const response = await shopifyStorefront.post("", { query });
+//     return response.data.data.products.edges;
+//   } catch (error) {
+//     return error;
+//   }
 
-  try {
-    const response = await shopifyStorefront.post('', { query });
-    return response.data.data.products.edges
-  } catch (error) {
-    return(error)
-  }
+//   //   console.log(response.data.data.products.edges)
+// };
 
-//   console.log(response.data.data.products.edges)
-  
-    
-  }
-
-  export const getCollectionsQuery = async ()=>{
-
-    const query = `
+export const getCollectionsQuery = async () => {
+  const query = `
 
     {
         collections(first:10){
@@ -95,20 +91,23 @@ const shopifyStorefront = axios.create({
       }
     
     
-    `
+    `;
 
-    const response = await shopifyStorefront.post('',{ query })
-    //   console.log(response.data.data.collections.edges)
-    return response.data.data.collections.edges
+  const response = await shopifyStorefront.post("", { query });
+  //   console.log(response.data.data.collections.edges)
+  return response.data.data.collections.edges;
+};
+
+export const getCollectionByHandle = async (
+  handle,
+  sortParam = "MANUAL",
+  order = "false",
+  filterArray
+) => {
+  if (filterArray.length < 1) {
+    filterArray = null;
   }
-
-  export const getCollectionByHandle = async (handle,sortParam='MANUAL',order='false',filterArray)=>{
-
-    if(filterArray.length < 1){
-
-      filterArray = null
-    }
-    const query = `
+  const query = `
     
     
     {
@@ -120,7 +119,9 @@ const shopifyStorefront = axios.create({
         image{
           url
         }
-        products(first:10,sortKey:${sortParam},reverse:${order},filters:${JSON.stringify(filterArray).replace(/\"([^(\")"]+)\":/g, '$1:')}){
+        products(first:10,sortKey:${sortParam},reverse:${order},filters:${JSON.stringify(
+    filterArray
+  ).replace(/\"([^(\")"]+)\":/g, "$1:")}){
           edges{
             node{
               handle
@@ -168,17 +169,48 @@ const shopifyStorefront = axios.create({
       }
       }
 
-    `
+    `;
 
+  //  console.log(query)
 
-    //  console.log(query)
-
-      try {
-        const response = await shopifyStorefront.post('', { query });
-        return response.data.data.collection
-      } catch (error) {
-        return(error)
-      }
-
-
+  try {
+    const response = await shopifyStorefront.post("", { query });
+    return response.data.data.collection;
+  } catch (error) {
+    return error;
   }
+};
+
+export const getProductByHandle = async (handle) => {
+  const query = `
+          {
+            productByHandle(handle:${handle}){
+              description
+              handle
+              title
+              id
+              vendor
+              featuredImage{
+                width
+                id
+                url
+              }
+              images(first:2){
+                edges{
+                  node{
+                    id
+                    width
+                    url
+                  }
+                }
+              }
+            }
+          }
+          `;
+
+  try {
+    const response = await shopifyStorefront.post("", { query });
+    console.log(response);
+    return response;
+  } catch (error) {}
+};

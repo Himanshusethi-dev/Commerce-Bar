@@ -1,10 +1,11 @@
 import React, { useEffect,useState } from 'react'
 import placeholderImage from '../../assets/placeholderImage.png'
+import { useNavigate } from 'react-router-dom'
 import "./productCard.css"
 const ProductCard = ({ item, data, index }) => {
 
     const [productDiscount,setProductDiscount] = useState(0);
-
+    const navigate = useNavigate();
     useEffect(()=>{
         calculateDiscount()
     },[])
@@ -21,10 +22,14 @@ const ProductCard = ({ item, data, index }) => {
        setProductDiscount(productDiscount)
     }
 
+    const navigateHandle = (handle)=>{
+        navigate(`/products/${handle}`)
+    }
+
     return (
         <div className="ProductCard" >
 
-            <div className="productImage">
+            <div className="productImage"  onClick={()=>{navigateHandle(`${item.node.handle}`)}} >
                 {
                     item.node.images?.edges.length > 0 ? (
 
