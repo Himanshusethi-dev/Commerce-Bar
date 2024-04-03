@@ -1,0 +1,100 @@
+.mainFilters {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    flex: 0 0 18%;
+    width: 18%;
+    overflow: hidden;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: auto;
+}
+
+.filterInner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+}
+
+.filterLabel svg{
+    width:25px;
+    height:25px;
+}
+
+.filterLabel .listFilter,.filterLabel .filterPriceRange{
+
+    display: flex;
+}
+
+.rangeBar{
+    width: 150px;
+    height: 9px;
+    background: white;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+.rangeSlider{
+    position: relative;
+}
+.sliderButton{
+    background: red;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border-radius: 50%;
+    top: -2px;
+}
+.sliderButton.minButton {
+    left: 0;
+}
+.sliderButton.maxButton {
+    right: 0;
+}
+
+.inputRangeContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;    
+}
+
+.filterItem {
+    width: 100%;
+    text-align: left;
+}
+
+.minMaxValueContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid white;
+    background-color: white;
+}
+
+.minPriceVal ,.maxPriceVal  {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: white;
+    color:black;
+    display: flex;
+    align-items: center;
+}
+.applyFilterButton{
+    background-color: white;
+    color: black;
+    border-radius: unset;
+    width: 150px;
+}
+.productsListGroup {
+    display: flex;
+    gap: 10px;
+}

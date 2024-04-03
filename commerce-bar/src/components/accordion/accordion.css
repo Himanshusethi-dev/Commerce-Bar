@@ -1,0 +1,30 @@
+.filterBox.show {
+display: block;
+}
+
+.filterBox{
+    display: none;
+    height: auto;
+    padding: 10px 5px;
+}
+
+button.filterLabelButton {
+    background: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: unset;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputRange input {
+    background: white;
+    color: black;
+    font-size: 14px;
+    max-width: 47px;
+    border: none;
+    margin-left: 3px;
+}
+
