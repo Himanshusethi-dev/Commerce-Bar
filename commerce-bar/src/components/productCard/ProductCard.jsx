@@ -1,35 +1,40 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import placeholderImage from '../../assets/placeholderImage.png'
 import { useNavigate } from 'react-router-dom'
 import "./productCard.css"
 const ProductCard = ({ item, data, index }) => {
 
-    const [productDiscount,setProductDiscount] = useState(0);
+    const [productDiscount, setProductDiscount] = useState(0);
     const navigate = useNavigate();
-    useEffect(()=>{
+    useEffect(() => {
         calculateDiscount()
-    },[])
+    }, [])
 
 
-    const calculateDiscount = ()=>{
+    const calculateDiscount = () => {
         let productDiscount = 0;
-       item?.node?.variants?.edges.forEach(variant => {
-       const variantDiscount =  Number(variant.node.compareAtPrice.amount).toFixed(0) -  Number(variant.node.price.amount).toFixed(0);
-       if(productDiscount < variantDiscount){
-        productDiscount = variantDiscount
-       }
-       });
-       setProductDiscount(productDiscount)
+        item?.node?.variants?.edges.forEach(variant => {
+            const variantDiscount = Number(variant.node.compareAtPrice.amount).toFixed(0) - Number(variant.node.price.amount).toFixed(0);
+            if (productDiscount < variantDiscount) {
+                productDiscount = variantDiscount
+            }
+        });
+        setProductDiscount(productDiscount)
     }
 
-    const navigateHandle = (handle)=>{
-        navigate(`/products/${handle}`)
+    const navigateHandle = (handle, idString) => {
+        const idStringArray = idString.split("/")
+        let firstSelectedVariantId = idStringArray[idStringArray.length - 1]
+        // console.log(firstSelectedVariantId)
+        // navigate(`/products/${handle}?variant=${firstSelectedVariantId}`)
+
+        window.open(`/products/${handle}?variant=${firstSelectedVariantId}`, '_blank')
     }
 
     return (
         <div className="ProductCard" >
 
-            <div className="productImage"  onClick={()=>{navigateHandle(`${item.node.handle}`)}} >
+            <div className="productImage" onClick={() => { navigateHandle(`${item.node.handle}`, `${item.node.variants.edges[0].node.id}`) }} >
                 {
                     item.node.images?.edges.length > 0 ? (
 
@@ -42,38 +47,47 @@ const ProductCard = ({ item, data, index }) => {
 
             </div>
 
-            <div className="prodVendorTitle">
-                {data.title}
-            </div>
+            <div className="productCardInfo">
+                <div className="prodVendorTitle">
+                    {data.title}
+                </div>
 
-            <div className="productTitle">
-                {item.node.title}
-            </div>
-
-            <div className="productDiscount">
-               Up to Rs. {productDiscount} OFF
-            </div>
-
-            {
-                Number(item.node.priceRange.minVariantPrice.amount) !== Number(item.node.priceRange.maxVariantPrice.amount) ? (
-                    <div className="priceRange">
-                        <span> Rs. {Number(item.node.priceRange.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.node.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
-                    </div>
+                <div className="productTitle">
+                    {item.node.title}
+                </div>
 
 
-                ) :
-                    (
-                        <div className="price">
-                            Rs. {Number(item.node.priceRange.maxVariantPrice.amount).toFixed(0)}
+
+                {
+                    productDiscount > 0 && (
+
+                        <div className="productDiscount">
+                            Up to Rs. {productDiscount} OFF
                         </div>
                     )
+                }
+
+
+                {
+                    Number(item.node.priceRange.minVariantPrice.amount) !== Number(item.node.priceRange.maxVariantPrice.amount) ? (
+                        <div className="priceRange">
+                            <span> Rs. {Number(item.node.priceRange.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.node.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
+                        </div>
+
+
+                    ) :
+                        (
+                            <div className="price">
+                                Rs. {Number(item.node.priceRange.maxVariantPrice.amount).toFixed(0)}
+                            </div>
+                        )
 
 
 
-            }
+                }
 
 
-
+            </div>
 
 
         </div>

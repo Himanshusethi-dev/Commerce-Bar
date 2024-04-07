@@ -1,0 +1,24 @@
+.variantOptions {
+    display: flex;
+    gap: 16px;
+}
+
+.variantSelector {
+    margin-top: 23px;
+}
+
+.variantTileValue {
+    background: #538CEE;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+.optionCategory{
+    text-align: left;
+}
+
+.variantsBox {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+}

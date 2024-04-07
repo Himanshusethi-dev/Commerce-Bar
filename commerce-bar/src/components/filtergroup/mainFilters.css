@@ -93,8 +93,14 @@
     color: black;
     border-radius: unset;
     width: 150px;
+    border: 2px solid #538CEE;
 }
 .productsListGroup {
     display: flex;
     gap: 10px;
+}
+
+
+.filterTitle label {
+    margin-right: 14px;
 }
