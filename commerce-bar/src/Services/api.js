@@ -150,6 +150,8 @@ export const getCollectionByHandle = async (
                   	compareAtPrice{
                       amount
                     }
+                    id
+                    title
                   }
                 }
               }
@@ -190,6 +192,27 @@ export const getProductByHandle = async (handle) => {
               title
               id
               vendor
+              options(first:2){
+                id
+                name
+                values
+              }
+              variants(first:2){
+                edges{
+                  node{
+                    price{
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice{
+                      amount
+                      currencyCode
+                    }
+                    id
+                    title
+                  }
+                }
+              }
               featuredImage{
                 width
                 id

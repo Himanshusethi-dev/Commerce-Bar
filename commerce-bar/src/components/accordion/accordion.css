@@ -1,5 +1,6 @@
 .filterBox.show {
-display: block;
+    display: block;
+    border: 1px solid #538CEE;
 }
 
 .filterBox{
@@ -11,12 +12,18 @@ display: block;
 button.filterLabelButton {
     background: white;
     color: black;
-    border: 1px solid black;
+    border: 1px solid #538CEE;
     border-radius: unset;
     width: 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 4px;
+
+}
+.filterLabelButton:focus{
+    border: 1px solid #538CEE;
+    outline: none;
 }
 
 .inputRange input {

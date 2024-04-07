@@ -1,0 +1,20 @@
+.quantitySelector {
+    background: #538CEE;
+    width: max-content;
+    margin-top: 32px;
+}
+
+.quantitySelector button ,.quantitySelector input {
+    background: transparent;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+
+.quantitySelector button{
+    width: 30px;
+}
+
+.quantitySelector input{
+    width: 50px;
+}

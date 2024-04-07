@@ -24,7 +24,7 @@ function App() {
              <Route path="/" element={<Home />} />
              <Route path="/collections-list" element={<CollectionsList />} />
              <Route path="/collections/:handle" element={<ProductList />} />
-             <Route path="/products/:handle"  element={<ProductPage />}/>
+             <Route path="/products/:handle"  exact element={<ProductPage />}/>
 
           </Routes>
         </Router>

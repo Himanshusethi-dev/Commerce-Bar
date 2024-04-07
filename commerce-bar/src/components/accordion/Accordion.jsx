@@ -43,12 +43,12 @@ const Accordion = ({fl,minPriceValue,maxPriceValue,priceRangeQuery,filterOperati
                     <div className="filterInput" key={valIndex}>
                         <span className="filterInputLabel">
 
-                            <label htmlFor="filterSelector">
+                            <label htmlFor={`filterSelector-${val.label}`}>
                                 {val.label}
                             </label>
                         </span>
                         <span className="filterInputField">
-                            <input type="checkbox"  name={`filterItem-${val.label}`} id="filterSelector" onChange={(e) => filterOperation(e, val.input, val.label)} />
+                            <input type="checkbox"  name={`filterItem-${val.label}`} id={`filterSelector-${val.label}`} onChange={(e) => filterOperation(e, val.input, val.label)} />
                         </span>
                     </div>
                 ) : (

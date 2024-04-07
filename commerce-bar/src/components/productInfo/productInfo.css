@@ -1,0 +1,20 @@
+.productInfo{
+    text-align: left;
+    line-height: 27px;
+}
+
+.prodVendor {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+span.comparePrice {
+    text-decoration: line-through;
+    color: #545454;
+}
+
+.priceContainer {
+    display: flex;
+    gap: 13px;
+    font-size: 20px;
+}
