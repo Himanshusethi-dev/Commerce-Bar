@@ -12,46 +12,6 @@ const shopifyStorefront = axios.create({
   },
 });
 
-// export const getProductsQuery = async () => {
-//   const query = `
-//     {
-//         products(first: 10) {
-//           edges {
-//             node {
-//               id
-//               title
-//               description
-//               handle
-//               images(first: 1) {
-//                 edges {
-//                   node {
-//                     originalSrc
-//                   }
-//                 }
-//               }
-//               variants(first: 2) {
-//                 edges {
-//                   node {
-//                     id
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//     }
-//   `;
-
-//   try {
-//     const response = await shopifyStorefront.post("", { query });
-//     return response.data.data.products.edges;
-//   } catch (error) {
-//     return error;
-//   }
-
-//   //   console.log(response.data.data.products.edges)
-// };
-
 export const getCollectionsQuery = async () => {
   const query = `
 
@@ -184,55 +144,95 @@ export const getCollectionByHandle = async (
 };
 
 export const getProductByHandle = async (handle) => {
-  const query = `
-          {
-            productByHandle(handle:${handle}){
-              description
-              handle
-              title
-              id
-              vendor
-              options(first:2){
-                id
-                name
-                values
-              }
-              variants(first:2){
-                edges{
-                  node{
-                    price{
-                      amount
-                      currencyCode
-                    }
-                    compareAtPrice{
-                      amount
-                      currencyCode
-                    }
-                    id
-                    title
-                  }
-                }
-              }
-              featuredImage{
-                width
-                id
-                url
-              }
-              images(first:2){
-                edges{
-                  node{
-                    id
-                    width
-                    url
-                  }
-                }
-              }
+  const ProductQuery = `
+  query productByHandle($handle: String!){
+    productByHandle(handle:$handle){
+      description
+      handle
+      title
+      id
+      vendor
+      options(first:2){
+        id
+        name
+        values
+      }
+      variants(first:2){
+        edges{
+          node{
+            price{
+              amount
+              currencyCode
             }
+            compareAtPrice{
+              amount
+              currencyCode
+            }
+            id
+            title
           }
-          `;
+        }
+      }
+      featuredImage{
+        width
+        id
+        url
+      }
+      images(first:5){
+        edges{
+          node{
+            id
+            width
+            url
+          }
+        }
+      }
+    }
+  }
+
+  
+  
+  `;
 
   try {
-    const response = await shopifyStorefront.post("", { query });
+    const response = await shopifyStorefront.post("", {
+      query: ProductQuery,
+      variables: { handle: handle },
+    });
+    console.log(response);
+    return response;
+  } catch (error) {}
+};
+
+export const createCustomer = async (input) => {
+  const customerCreateQuery = `
+  
+    mutation customerCreate($input: CustomerCreateInput!) {
+      customerCreate(input: $input) {
+        customerUserErrors {
+          code
+          field
+          message
+        }
+        customer {
+          id
+          email
+        }
+      }
+    }
+    
+    `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: customerCreateQuery,
+      variables: {
+        input: {
+          email: "himanshusethi9641@gmail.com",
+          password: "123456",
+        }
+      },
+    });
     console.log(response);
     return response;
   } catch (error) {}

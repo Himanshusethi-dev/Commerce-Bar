@@ -11,6 +11,7 @@ const Home = () => {
 
       <div className="nav">
         <Link to={'/collections-list'}>  Collections </Link>
+        <Link to={'/account/sign-up'} > Sign up</Link>
       </div>
     </div>
     

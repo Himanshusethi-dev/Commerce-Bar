@@ -9,31 +9,46 @@ const ProductPage = () => {
 
     const params = new useParams();
     const { handle } = params;
-    const [searchParams,setSearchParams ]  = useSearchParams();
+    // const [searchParams,setSearchParams ]  = useSearchParams();
     const [prodData, setProdData] = useState(null);
     const [variantId,setVariantId] = useState(null)
+
+    const productFetchByHandle = async () => {
+
+        try {
+            const resp = await getProductByHandle(`${handle}`);
+            setProdData(resp.data.data.productByHandle)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
     useEffect(() => {
         productFetchByHandle()
     }, [handle])
 
+    const getInitialVariantID = ()=>{
+        if(!prodData) return;
+        const idStringArray = prodData.variants.edges[0].node.id.split("/")  
+        const  firstSelectedVariantId = idStringArray[idStringArray.length - 1]
+        console.log("firstSelectedVariantId",firstSelectedVariantId)
+        return firstSelectedVariantId
+    }
+
+    const updateVariantID =(cvid)=>{
+        setVariantId(cvid)
+    }
+
     useEffect(()=>{
-        setVariantId(searchParams.get('variant'))
-    },[searchParams])
+      let initialVariantID =   getInitialVariantID()
+        console.log(prodData,"prodData")
+        setVariantId(initialVariantID)
+    },[prodData])
 
     useEffect(()=>{
         console.log('variant',variantId)
     },[variantId])
 
-    useEffect(() => {
-        console.log(prodData)
-
-    }, [prodData])
-    const productFetchByHandle = async () => {
-        const resp = await getProductByHandle(`"${handle}"`);
-        //    console.log(resp)
-        setProdData(resp.data.data.productByHandle)
-
-    }
     return (
 
         <>
@@ -47,7 +62,7 @@ const ProductPage = () => {
                         </div>
                         <div className="productMain">
                             <ProductMedia  data={prodData} />
-                            <ProductInfo  data={prodData} vID = {variantId} />
+                            <ProductInfo  data={prodData} vID = {variantId} updateVariantID={updateVariantID} />
                         </div>
                     </Fragment>
 

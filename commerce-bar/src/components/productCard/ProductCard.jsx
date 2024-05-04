@@ -23,12 +23,7 @@ const ProductCard = ({ item, data, index }) => {
     }
 
     const navigateHandle = (handle, idString) => {
-        const idStringArray = idString.split("/")
-        let firstSelectedVariantId = idStringArray[idStringArray.length - 1]
-        // console.log(firstSelectedVariantId)
-        // navigate(`/products/${handle}?variant=${firstSelectedVariantId}`)
-
-        window.open(`/products/${handle}?variant=${firstSelectedVariantId}`, '_blank')
+        navigate(`/products/${handle}`)
     }
 
     return (

@@ -18,3 +18,12 @@ span.comparePrice {
     gap: 13px;
     font-size: 20px;
 }
+
+.productFormButtons {
+    margin-top: 30px;
+}
+
+.productInfo {
+    flex: 0 0 48%;
+    width: 48%;
+}
