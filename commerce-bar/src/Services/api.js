@@ -147,8 +147,9 @@ export const getProductByHandle = async (handle) => {
   const ProductQuery = `
   query productByHandle($handle: String!){
     productByHandle(handle:$handle){
-      description
+      descriptionHtml
       handle
+      totalInventory
       title
       id
       vendor
