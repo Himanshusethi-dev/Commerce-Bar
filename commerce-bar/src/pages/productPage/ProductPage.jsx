@@ -2,9 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react'
 import "./productPage.css";
 import { json, useParams,useSearchParams  } from 'react-router-dom'
 import { getProductByHandle } from '../../Services/api';
-import MediaSlider from '../../components/productMedia/mediaSlider';
 import ProductInfo from '../../components/productInfo/ProductInfo';
-
+import MediaSlider from '../../components/productMedia/MediaSlider';
 const ProductPage = () => {
 
     const params = new useParams();
