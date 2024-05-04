@@ -43,6 +43,10 @@
     width: 80%;
     
 }
+
+.prodimage.showOne img{
+    max-width: unset;
+}
 .mediaSlider:disabled{
     opacity: 0.3;
 }
@@ -55,7 +59,7 @@
     overflow-x: scroll;
 }
 .imagesTrackthumbnails .prodimage{
-    flex: 0 0 30%;
+    flex: 0 0 22%;
     width: 100%;
     cursor: pointer;
 }

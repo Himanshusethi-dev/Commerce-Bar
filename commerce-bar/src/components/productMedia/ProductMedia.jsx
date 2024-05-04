@@ -19,21 +19,20 @@ const ProductMedia = ({ data }) => {
         setSliderButtons();
     }, [initialPosition])
 
-    useEffect(()=>{
-        console.log(initialSlidePosRef,"initialSlidePosRef")
-    },[initialSlidePosRef])
+    useEffect(() => {
+        console.log(initialSlidePosRef, "initialSlidePosRef")
+    }, [initialSlidePosRef])
 
     const controlMainSlider = (operation) => {
         console.log(sliderRef)
         let scrollValue;
         if (!operation) {
             rightButtonRef.current.disabled = false;
-            if (initialPosition === 0) return;
+            if (initialPosition === 0 || initialSlidePosRef.current === 0) return;
             scrollValue = (sliderRef.current.children[0].offsetWidth - initialPosition);
             if (initialPosition === sliderRef.current.clientWidth) {
                 leftButtonRef.current.disabled = true;
             }
-            if(initialSlidePosRef.current  === 0) return
             initialSlidePosRef.current -= 1
 
         } else {
@@ -43,7 +42,7 @@ const ProductMedia = ({ data }) => {
                 rightButtonRef.current.disabled = true;
             }
             scrollValue = (sliderRef.current.children[0].offsetWidth + initialPosition) * -1;
-            if(initialSlidePosRef.current >=  sliderRef.current.childElementCount.length) return
+            if (initialSlidePosRef.current >= sliderRef.current.childElementCount.length) return
             initialSlidePosRef.current += 1
         }
         Array.from(sliderRef.current.children).forEach((slide) => {
@@ -65,7 +64,7 @@ const ProductMedia = ({ data }) => {
 
     const thumnailControlSlider = (index) => {
         console.log(index)
-       
+
         console.log(thumbSliderRef)
         let scrollValue = (sliderRef.current.children[0].offsetWidth * index) * -1
         let thumbscrollValue = (thumbSliderRef.current.children[0].offsetWidth * (index - 1)) * -1
@@ -94,7 +93,7 @@ const ProductMedia = ({ data }) => {
             leftButtonRef.current.disabled = false;
         }
         initialPosition = Math.abs(scrollValue)
-        initialSlidePosRef.current = index 
+        initialSlidePosRef.current = index
     }
 
     return (
@@ -112,7 +111,7 @@ const ProductMedia = ({ data }) => {
 
                         <div ref={sliderRef} className="imagesTrack" >
                             {data.images.edges.map((item) => (
-                                <div key={item.node.id} className="prodimage">
+                                <div key={item.node.id} className={`prodimage${ data.images.edges.length  === 1 ? "showOne"  : ""}`}>
                                     <img src={item.node.url} />
                                 </div>
                             ))}
@@ -126,11 +125,13 @@ const ProductMedia = ({ data }) => {
                             )
                         }
                     </div>
+                    {
 
-                    <div className="thumbnailsTrack">
-                        {
+                        data.images.edges.length > 1 && (
+                            <div className="thumbnailsTrack">
 
-                            data.images.edges.length > 1 && (
+
+
 
                                 <div ref={thumbSliderRef} className="imagesTrackthumbnails" >
                                     {data.images.edges.map((item, index) => (
@@ -139,10 +140,12 @@ const ProductMedia = ({ data }) => {
                                         </div>
                                     ))}
                                 </div>
-                            )
-                        }
 
-                    </div>
+
+
+                            </div>
+                        )
+                    }
                 </div>
             </div>
 
