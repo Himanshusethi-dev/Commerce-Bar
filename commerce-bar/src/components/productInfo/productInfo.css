@@ -27,3 +27,23 @@ span.comparePrice {
     flex: 0 0 48%;
     width: 48%;
 }
+
+.productDescription {
+    margin-top: 26px;
+}
+
+.contentTitle {
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid #ceb9b9;
+}
+
+.outOfStockLabel {
+    background: black;
+    color: white;
+    width: max-content;
+    padding: 5px 12px;
+    margin-top: 12px;
+    border-radius: 6px;
+    font-size: 17px;
+}

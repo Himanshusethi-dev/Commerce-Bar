@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import "./productPage.css";
 import { json, useParams,useSearchParams  } from 'react-router-dom'
 import { getProductByHandle } from '../../Services/api';
-import ProductMedia from '../../components/productMedia/ProductMedia';
+import MediaSlider from '../../components/productMedia/mediaSlider';
 import ProductInfo from '../../components/productInfo/ProductInfo';
 
 const ProductPage = () => {
@@ -50,18 +50,14 @@ const ProductPage = () => {
     },[variantId])
 
     return (
-
         <>
-
             {
                 !!prodData && (
                     <Fragment>
-                        <div className='productDescription'>{prodData.description}</div>
-                        <div className="variantId">
-                            { variantId }
-                        </div>
+                       
+                      
                         <div className="productMain">
-                            <ProductMedia  data={prodData} />
+                            <MediaSlider  data={prodData} showThumbNails={true} />
                             <ProductInfo  data={prodData} vID = {variantId} updateVariantID={updateVariantID} />
                         </div>
                     </Fragment>
