@@ -1,46 +1,27 @@
 import React, { Fragment } from 'react'
 import "./variantSelector.css"
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
 
-
-const VariantSelector = ({ data, vID }) => {
-
-    const [currentVariant, setCurrentVariant] = useState(vID)
-    const [searchParams, setSearchParams] = useSearchParams();
-
+const VariantSelector = ({ data, vID, updateVariantID }) => {
     const onVariantChange = (idString) => {
-
-        // console.log("id",idString)
         let idArray = idString.split('/')
         let varID = idArray[idArray.length - 1]
-
-        setCurrentVariant(varID)
-        setSearchParams({variant:varID})
-
-        console.log("varID", varID)
-
+        updateVariantID(varID)
     }
 
     return (
 
         <>
             {
-                !!data && (
+                (!!data && data.variants.edges.length > 1) && (
                     <div className="variantSelector">
-                        {(!!data.variants.edges.length > 0) && (
-
                             <>
-
                                 <div className="optionCategory">
-                                    Size : 
+                                    Variant
                                 </div>
-
                                 <div className='variantsBox'>
                                     {
                                         data.variants.edges.map((item) => (
-
-
                                             <Fragment key={item.node.id}>
 
                                                 <div className='variantTile'>
@@ -50,18 +31,12 @@ const VariantSelector = ({ data, vID }) => {
                                                         </button>
                                                     }
                                                 </div>
-
-                                                {/* <div className="cvID">
-                                                    {currentVariant}
-                                                </div> */}
                                             </Fragment>
                                         ))
                                     }
                                 </div>
                             </>
-                        )}
                     </div>
-
                 )
             }
 

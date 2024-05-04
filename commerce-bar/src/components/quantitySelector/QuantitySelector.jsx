@@ -1,6 +1,6 @@
-import {React,useState} from 'react'
+import {React,useEffect,useState} from 'react'
 import "./quantitySelector.css"
-const QuantitySelector = () => {
+const QuantitySelector = ({getQuantity}) => {
     const [quantity,setQuantity] = useState(1);
     const [minusdisabledButton,setMinusDisabledButton] = useState(true)
     const [plusdisabledButton,setPlusDisabledButton] = useState(false)
@@ -29,6 +29,15 @@ const QuantitySelector = () => {
             }
 
     }
+
+
+    useEffect(()=>{
+     console.log('fdfjdfj')   
+    })
+    useEffect(()=>{
+        getQuantity(quantity)
+
+    },[quantity])
 
 
   return (

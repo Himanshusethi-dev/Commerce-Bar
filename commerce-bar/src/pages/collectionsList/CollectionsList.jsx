@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { getCollectionsQuery } from '../../Services/api'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
+import './collectionsList.css' 
 
 const CollectionsList = () => {
 
@@ -12,7 +13,7 @@ const CollectionsList = () => {
         fetchAllCollections()
 
         //    setData(data)
-    },[])
+    }, [])
 
     useEffect(() => {
         console.log(data)
@@ -25,16 +26,13 @@ const CollectionsList = () => {
     }
 
 
-    const navigateHandle = (handle)=>{
+    const navigateHandle = (handle) => {
 
         navigate(`/collections/${handle}`)
 
 
     }
 
-    // useEffect(()=>{
-    //     console.log(data)
-    // },[data])
 
     return (
 
@@ -42,31 +40,31 @@ const CollectionsList = () => {
             {
                 !!data && (
 
-                    <div className='collectionsList'>
+                    <div className='collectionsList container'>
                         {
                             data?.map((item) => (
                                 <Fragment key={item.node.id}>
-                                    
-                                    
 
-                                    <div className="coll-card" onClick={()=>{navigateHandle(item.node.handle)}}> 
+
+
+                                    <div className="coll-card" onClick={() => { navigateHandle(item.node.handle) }}>
                                         <div className="collInfo">
 
                                             <div className="coll-title">
                                                 {item.node.title}
                                             </div>
 
-                                            <div className="description">
+                                            {/* <div className="description">
                                                 {item.node.description}
-                                            </div>
+                                            </div> */}
 
                                         </div>
 
-                                        <div className="collMedia">
-                                            <div className="coll-image">
-                                                <img src={`${item.node.image.url}`} alt="" />
-                                            </div>
+
+                                        <div className="coll-image">
+                                            <img src={`${item.node.image.url}`} alt="" />
                                         </div>
+
                                     </div>
 
 

@@ -1,17 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useSearchParams  } from 'react-router-dom'
 
 const Price = ({ data, vID }) => {
     const [priceState, setPriceState] = useState({})
-    const [currentVariant, setCurrentVariant] = useState(vID)
-    const [searchParams,setSearchParams ]  = useSearchParams();
-
-
     const getPrice = () => {
         let priceObj = {};
         data.variants.edges.forEach((item) => {
-            if (item.node.id.includes(currentVariant)) {
+            if (item.node.id.includes(vID)) {
                 priceObj.price = item.node.price.amount,
                     priceObj.compareAtPrice = item.node.compareAtPrice.amount
             }
@@ -20,21 +15,9 @@ const Price = ({ data, vID }) => {
         });
     }
 
-
-    
-    useEffect(()=>{
-        setCurrentVariant(searchParams.get('variant'))
-    },[searchParams])
-    
     useEffect(() => {
         getPrice()
-        console.log(priceState)
-        console.log(currentVariant,"currentVariant")
-    }, [currentVariant])
-
-    useEffect(() => {
-        console.log(priceState)
-    }, [priceState])
+    }, [vID])
 
     return (
         <>

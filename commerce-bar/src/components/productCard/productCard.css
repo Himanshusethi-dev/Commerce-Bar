@@ -20,14 +20,15 @@
 }
 
 .productTitle {
-    text-overflow: ellipsis;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box !important;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    color: #795353;
-    font-size: 14px;
+    color: black;
+    font-size: 21px;
+    line-height: 33px;
+
 }
 .productDiscount {
     background: #538CEE;

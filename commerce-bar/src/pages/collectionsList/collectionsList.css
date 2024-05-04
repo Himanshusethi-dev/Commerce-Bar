@@ -1,0 +1,38 @@
+.collectionsList {
+    display: grid;
+    grid-template-columns: repeat(3,32%);
+    justify-content: space-between;
+}
+.coll-card {
+    overflow: hidden;
+}
+.collInfo .description {
+    font-size: 23px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+.coll-title {
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.coll-image {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 7px;
+}
+.coll-image img {
+    width: 100%;
+    border-radius: 7px;
+}
+
+@media (max-width : 767px){
+    .collectionsList {
+        display: grid;
+        grid-template-columns: repeat(1,100%);
+        justify-content: space-between;
+    }
+}

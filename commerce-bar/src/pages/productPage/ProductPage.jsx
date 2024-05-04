@@ -2,52 +2,63 @@ import React, { useState, useEffect, Fragment } from 'react'
 import "./productPage.css";
 import { json, useParams,useSearchParams  } from 'react-router-dom'
 import { getProductByHandle } from '../../Services/api';
-import ProductMedia from '../../components/productMedia/ProductMedia';
+import MediaSlider from '../../components/productMedia/mediaSlider';
 import ProductInfo from '../../components/productInfo/ProductInfo';
 
 const ProductPage = () => {
 
     const params = new useParams();
     const { handle } = params;
-    const [searchParams,setSearchParams ]  = useSearchParams();
+    // const [searchParams,setSearchParams ]  = useSearchParams();
     const [prodData, setProdData] = useState(null);
     const [variantId,setVariantId] = useState(null)
+
+    const productFetchByHandle = async () => {
+
+        try {
+            const resp = await getProductByHandle(`${handle}`);
+            setProdData(resp.data.data.productByHandle)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
     useEffect(() => {
         productFetchByHandle()
     }, [handle])
 
+    const getInitialVariantID = ()=>{
+        if(!prodData) return;
+        const idStringArray = prodData.variants.edges[0].node.id.split("/")  
+        const  firstSelectedVariantId = idStringArray[idStringArray.length - 1]
+        console.log("firstSelectedVariantId",firstSelectedVariantId)
+        return firstSelectedVariantId
+    }
+
+    const updateVariantID =(cvid)=>{
+        setVariantId(cvid)
+    }
+
     useEffect(()=>{
-        setVariantId(searchParams.get('variant'))
-    },[searchParams])
+      let initialVariantID =   getInitialVariantID()
+        console.log(prodData,"prodData")
+        setVariantId(initialVariantID)
+    },[prodData])
 
     useEffect(()=>{
         console.log('variant',variantId)
     },[variantId])
 
-    useEffect(() => {
-        console.log(prodData)
-
-    }, [prodData])
-    const productFetchByHandle = async () => {
-        const resp = await getProductByHandle(`"${handle}"`);
-        //    console.log(resp)
-        setProdData(resp.data.data.productByHandle)
-
-    }
     return (
-
         <>
-
             {
                 !!prodData && (
                     <Fragment>
-                        <div className='productDescription'>{prodData.description}</div>
-                        <div className="variantId">
-                            { variantId }
-                        </div>
+                       
+                      
                         <div className="productMain">
-                            <ProductMedia  data={prodData} />
-                            <ProductInfo  data={prodData} vID = {variantId} />
+                            <MediaSlider  data={prodData} showThumbNails={true} />
+                            <ProductInfo  data={prodData} vID = {variantId} updateVariantID={updateVariantID} />
                         </div>
                     </Fragment>
 
