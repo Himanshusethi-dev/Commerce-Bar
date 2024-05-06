@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import Price from '../price/Price'
+import Price from '../../price/Price'
 import "./productInfo.css"
-import VariantSelector from '../variantSelector/VariantSelector'
-import QuantitySelector from '../quantitySelector/QuantitySelector'
-import { createCustomer } from '../../Services/api'
-
+import { createCustomer } from '../../../Services/api'
+import VariantSelector from '../../../components/variantSelector/VariantSelector';
+import QuantitySelector from '../../../components/quantitySelector/QuantitySelector';
+import {createMarkup} from '../../../helpers.js'
 const ProductInfo = ({ data, vID, updateVariantID }) => {
     const [currentQuantity, setCurrentQuantity] = useState(1)
     const getQuantity = (qty) => {
         setCurrentQuantity(qty)
     }
 
-    function createMarkup(c) {
-        return { __html: c };
-    }
+   
     const addProductToCart = () => {
     }
 
-    // useEffect(() => {
-    //     console.log("currentQuantity", currentQuantity)
-    // }, [currentQuantity])
-
     const createCustomerTrigger = async () => {
-
         const data = await createCustomer();
-        console.log(data)
     }
 
     return (

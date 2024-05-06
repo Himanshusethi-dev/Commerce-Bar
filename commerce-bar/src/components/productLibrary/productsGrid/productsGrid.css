@@ -1,0 +1,15 @@
+.productCarousel .slick-track{
+    margin-left: 0;
+}
+
+.productCarousel .productImage img{
+    margin:auto;
+}
+
+.productGridType {
+    font-size: 30px;
+    margin: 16px 0;
+    font-weight: 400;
+    text-align: left;
+    border-top: 1px solid rgb(206 171 171 / 25%);
+}

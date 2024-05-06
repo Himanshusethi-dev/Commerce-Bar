@@ -14,6 +14,7 @@
     box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
     background: rgb(255, 255, 255);
     border: 0.5px solid rgb(232, 232, 232);
+    cursor: pointer;
 }
 .collectionProductList{
     margin-top: 20px;
@@ -45,6 +46,21 @@
     border-bottom-right-radius: 11px;
     top: 0;
 }
-.productCardInfo{
-    padding:10px;
+.productCardInfo {
+    padding: 18px;
+    text-align: left;
+}
+
+.productCardInfo .priceRange {
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+.productCarousel .slick-track {
+    width: 100%!important;
+}
+
+.productCarousel .slick-initialized .slick-slide{
+
+    margin-right: 10px;
 }

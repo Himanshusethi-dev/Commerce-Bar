@@ -13,7 +13,7 @@ const ProductCard = ({ item, data, index }) => {
 
     const calculateDiscount = () => {
         let productDiscount = 0;
-        item?.node?.variants?.edges.forEach(variant => {
+        item?.variants?.edges.forEach(variant => {
             const variantDiscount = Number(variant.node.compareAtPrice.amount).toFixed(0) - Number(variant.node.price.amount).toFixed(0);
             if (productDiscount < variantDiscount) {
                 productDiscount = variantDiscount
@@ -29,11 +29,11 @@ const ProductCard = ({ item, data, index }) => {
     return (
         <div className="ProductCard" >
 
-            <div className="productImage" onClick={() => { navigateHandle(`${item.node.handle}`, `${item.node.variants.edges[0].node.id}`) }} >
+            <div className="productImage" onClick={() => { navigateHandle(`${item.handle}`) }} >
                 {
-                    item.node.images?.edges.length > 0 ? (
+                    item.images?.edges.length > 0 ? (
 
-                        <img width='200' src={`${item.node.images?.edges[0].node.url}`} alt="" />
+                        <img width='200' src={`${item.images?.edges[0].node.url}`} alt="" />
                     ) : (
                         <img width='200' src={placeholderImage} alt="" />
 
@@ -44,11 +44,11 @@ const ProductCard = ({ item, data, index }) => {
 
             <div className="productCardInfo">
                 <div className="prodVendorTitle">
-                    {data.title}
+                    {data.title || item.vendor}
                 </div>
 
                 <div className="productTitle">
-                    {item.node.title}
+                    {item.title}
                 </div>
 
 
@@ -64,16 +64,16 @@ const ProductCard = ({ item, data, index }) => {
 
 
                 {
-                    Number(item.node.priceRange.minVariantPrice.amount) !== Number(item.node.priceRange.maxVariantPrice.amount) ? (
+                    Number(item.priceRange.minVariantPrice.amount) !== Number(item.priceRange.maxVariantPrice.amount) ? (
                         <div className="priceRange">
-                            <span> Rs. {Number(item.node.priceRange.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.node.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
+                            <span> Rs. {Number(item.priceRange.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
                         </div>
 
 
                     ) :
                         (
                             <div className="price">
-                                Rs. {Number(item.node.priceRange.maxVariantPrice.amount).toFixed(0)}
+                                Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}
                             </div>
                         )
 

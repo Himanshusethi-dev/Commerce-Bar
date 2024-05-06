@@ -1,0 +1,15 @@
+.collectionInfo {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.collDescription {
+    font-size: 16px;
+    max-width: 90%;
+    margin: auto;
+    text-align: left;
+}
+.collTitle {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}

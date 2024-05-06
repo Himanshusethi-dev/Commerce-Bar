@@ -44,9 +44,7 @@
     
 }
 
-.prodimage.showOne img{
-    max-width: unset;
-}
+
 .mediaSlider:disabled{
     opacity: 0.3;
 }
@@ -65,4 +63,15 @@
 }
 .noData {
     margin: auto;
+}
+
+
+ .prodimage .magnifier  img {
+    width: 80%!important;
+    margin: auto;
+    max-width: 350px;
+}
+
+.prodimage.showOne .magnifier img{
+    max-width: unset!important;
 }
