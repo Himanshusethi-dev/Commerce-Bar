@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 import { getCollectionByHandle } from '../../Services/api'
 import { useParams } from 'react-router-dom'
 import placeholderImage from '../../assets/placeholderImage.png'
+import "./productList.css"
 import ProductCard from '../../components/productCard/ProductCard'
 import Filter from '../../components/filter/Filter'
 import MainFilters from '../../components/filtergroup/MainFilters'
+import {createMarkup} from '../../helpers.js'
+
 const ProductList = () => {
     // const savedFiltstring = localStorage.getItem("allFilters")
     // const savedFilt = JSON.parse(savedFiltstring)
@@ -58,7 +61,7 @@ const ProductList = () => {
                             <div className="collTitle">
                                 {data.title}
                             </div>
-                            <div>{data.description}</div>
+                            <div  dangerouslySetInnerHTML={createMarkup(data.descriptionHtml)}  className='collDescription'></div>
                         </div>
                         <div className="collectionMedia">
                             <div className="collectionImage">
@@ -84,7 +87,7 @@ const ProductList = () => {
                                             <div className="productGrid">
                                                 {
                                                     data.products?.edges.map((item, index) => (
-                                                        <ProductCard data={data} item={item} key={index} />
+                                                        <ProductCard data={data} item={item.node} key={index} />
                                                     ))
                                                 }
                                             </div>

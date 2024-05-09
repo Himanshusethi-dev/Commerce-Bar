@@ -72,7 +72,7 @@ export const getCollectionByHandle = async (
     
     {
       collection(handle:${handle}){
-        description
+        descriptionHtml
         handle
         title
         id
@@ -205,6 +205,48 @@ export const getProductByHandle = async (handle) => {
   } catch (error) {}
 };
 
+export const getRecommendedProducts = async (id) => {
+  const recommendedProductsQuery = `
+
+      query productRecommendations($productId: ID!) {
+        productRecommendations(productId: $productId) {
+          id
+          vendor
+          title
+          handle
+          images(first:5){
+            edges{
+              node{
+                id
+                width
+                url
+              }
+            }
+          }
+          priceRange{
+            minVariantPrice{
+              amount
+            }
+            maxVariantPrice{
+              amount
+            }
+          }
+        }
+         
+      }
+  
+  `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: recommendedProductsQuery,
+      variables: { productId: id },
+    });
+    console.log(response);
+    return response.data.data.productRecommendations;
+  } catch (error) {}
+};
+
 export const createCustomer = async (input) => {
   const customerCreateQuery = `
   
@@ -231,7 +273,7 @@ export const createCustomer = async (input) => {
         input: {
           email: "himanshusethi9641@gmail.com",
           password: "123456",
-        }
+        },
       },
     });
     console.log(response);

@@ -1,9 +1,11 @@
 
-
 .productMain {
-    gap: 4%;
+    gap: 2%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-top: 75px;
+}
+.productPage {
+    max-width: 1560px;
 }

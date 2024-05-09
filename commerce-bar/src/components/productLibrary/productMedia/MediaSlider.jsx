@@ -1,19 +1,20 @@
 import React, { useEffect, useRef } from 'react'
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import placeholderImage from '../../assets/placeholderImage.png'
+// import ReactImageMagnify from '@blacklab/react-image-magnify';
+import placeholderImage from '../../../assets/placeholderImage.png'
 import "./productMedia.css"
-const  MediaSlider = ({ data, showThumbNails }) => {
+const MediaSlider = ({ data, showThumbNails, vID }) => {
     const sliderRef = useRef(null)
     const thumbSliderRef = useRef(null)
     const leftButtonRef = useRef(null);
     const rightButtonRef = useRef(null)
     const initialSlidePosRef = useRef(0)
-   
+
 
     useEffect(() => {
         setButtonsStateOnMount();
-    }, [])
+    }, [vID])
 
     const setButtonsStateOnMount = () => {
         if (leftButtonRef.current !== null) {
@@ -31,9 +32,9 @@ const  MediaSlider = ({ data, showThumbNails }) => {
         manipulateScrollValues(index)
         initialSlidePosRef.current = index
     }
-    
 
-    const setButtonsState = (operation)=>{
+
+    const setButtonsState = (operation) => {
         if (!operation) {
             rightButtonRef.current.disabled = false;
             initialSlidePosRef.current -= 1
@@ -43,7 +44,7 @@ const  MediaSlider = ({ data, showThumbNails }) => {
         }
     }
 
-    const manipulateScrollValues =(index)=>{
+    const manipulateScrollValues = (index) => {
         let scrollValue = (sliderRef.current.children[0].offsetWidth * index) * -1
         let thumbscrollValue = (thumbSliderRef?.current?.children[0].offsetWidth * (index - 1)) * -1
         sliderRef.current.childNodes.forEach(slide => slide.style.transform = `translateX(${scrollValue}px)`)
@@ -56,7 +57,7 @@ const  MediaSlider = ({ data, showThumbNails }) => {
         index === 0 ? leftButtonRef.current.disabled = true : leftButtonRef.current.disabled = false;
     }
 
-   
+
 
     return (
         <>
@@ -76,6 +77,22 @@ const  MediaSlider = ({ data, showThumbNails }) => {
                                     {data.images.edges.map((item) => (
                                         <div key={item.node.id} className={`prodimage ${data.images.edges.length === 1 ? "showOne" : ""}`}>
                                             <img src={item.node.url} />
+                                            <div className="magnifier">
+                                                {/* { <ReactImageMagnify {...{
+                                                    smallImage: {
+                                                        alt: 'Wristwatch by Ted Baker London',
+                                                        isFluidWidth: true,
+                                                        src: item.node.url
+                                                    },
+                                                    largeImage: {
+                                                        src: item.node.url,
+                                                        width: 400,
+                                                        height: 400
+                                                    },
+                                                    enlargedImagePosition:"over"
+                                                }} />} */}
+                                            </div>
+
                                         </div>
                                     ))}
                                 </div>

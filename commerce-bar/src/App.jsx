@@ -1,5 +1,7 @@
 import { useState,useEffect } from 'react'
 import { getCollectionsQuery } from './Services/api'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import CollectionsList from './pages/collectionsList/CollectionsList'
 import ProductList from './pages/productListing/ProductList'
 import {BrowserRouter as Router,Route,Routes} from  'react-router-dom'
@@ -10,11 +12,6 @@ import CustomerCreate from './pages/Account/customerCreate/CustomerCreate'
 
 function App() {
 
-
-  // useEffect(()=>{
-
-  //   getProductsQuery()
-  // })
 
   return (
 

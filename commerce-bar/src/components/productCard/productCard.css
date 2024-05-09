@@ -14,6 +14,8 @@
     box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
     background: rgb(255, 255, 255);
     border: 0.5px solid rgb(232, 232, 232);
+    cursor: pointer;
+    max-width: 200px;
 }
 .collectionProductList{
     margin-top: 20px;
@@ -26,8 +28,9 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     color: black;
-    font-size: 21px;
-    line-height: 33px;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 7px 0;
 
 }
 .productDiscount {
@@ -45,6 +48,21 @@
     border-bottom-right-radius: 11px;
     top: 0;
 }
-.productCardInfo{
-    padding:10px;
+.productCardInfo {
+    padding: 18px;
+    text-align: left;
 }
+
+.productCardInfo .priceRange {
+    margin-top: 3px;
+    font-size: 15px;
+}
+
+.productCarousel .slick-track {
+    width: 100%!important;
+}
+
+/* .productCarousel .slick-initialized .slick-slide{
+
+    margin-right: 10px;
+} */
