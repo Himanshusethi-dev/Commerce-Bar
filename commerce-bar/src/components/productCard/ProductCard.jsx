@@ -33,9 +33,9 @@ const ProductCard = ({ item, data, index }) => {
                 {
                     item.images?.edges.length > 0 ? (
 
-                        <img width='200' src={`${item.images?.edges[0].node.url}`} alt="" />
+                        <img width='150' src={`${item.images?.edges[0].node.url}`} alt="" />
                     ) : (
-                        <img width='200' src={placeholderImage} alt="" />
+                        <img width='150' src={placeholderImage} alt="" />
 
                     )
                 }

@@ -50,18 +50,20 @@ const ProductsGrid = ({ data, type, vID }) => {
             {
                 productList.length && (
                     <>
+                        <div className="productCarouselContainer">
+                            <div className='productGridType'>{sectionType}</div>
 
-                        <div className='productGridType'>{sectionType}</div>
-
-                        <div className='productCarousel'>
-                            <Slider {...settings}>
-                                {
-                                    productList?.map((prod, index) => (
-                                        <ProductCard data={productList} item={prod} key={index} />
-                                    ))
-                                }
-                            </Slider>
+                            <div className='productCarousel'>
+                                <Slider {...settings}>
+                                    {
+                                        productList?.map((prod, index) => (
+                                            <ProductCard data={productList} item={prod} key={index} />
+                                        ))
+                                    }
+                                </Slider>
+                            </div>
                         </div>
+
                     </>
                 )
             }

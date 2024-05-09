@@ -13,3 +13,6 @@
     text-align: left;
     border-top: 1px solid rgb(206 171 171 / 25%);
 }
+.productCarouselContainer {
+    margin: 55px 0;
+}
