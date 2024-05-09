@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import ReactImageMagnify from 'react-image-magnify';
+// import ReactImageMagnify from '@blacklab/react-image-magnify';
 import placeholderImage from '../../../assets/placeholderImage.png'
 import "./productMedia.css"
 const MediaSlider = ({ data, showThumbNails, vID }) => {
@@ -76,9 +76,9 @@ const MediaSlider = ({ data, showThumbNails, vID }) => {
                                 <div ref={sliderRef} className="imagesTrack" >
                                     {data.images.edges.map((item) => (
                                         <div key={item.node.id} className={`prodimage ${data.images.edges.length === 1 ? "showOne" : ""}`}>
-                                            {/* <img src={item.node.url} /> */}
+                                            <img src={item.node.url} />
                                             <div className="magnifier">
-                                                <ReactImageMagnify {...{
+                                                {/* { <ReactImageMagnify {...{
                                                     smallImage: {
                                                         alt: 'Wristwatch by Ted Baker London',
                                                         isFluidWidth: true,
@@ -90,7 +90,7 @@ const MediaSlider = ({ data, showThumbNails, vID }) => {
                                                         height: 400
                                                     },
                                                     enlargedImagePosition:"over"
-                                                }} />
+                                                }} />} */}
                                             </div>
 
                                         </div>
