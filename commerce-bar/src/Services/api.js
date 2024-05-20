@@ -247,6 +247,46 @@ export const getRecommendedProducts = async (id) => {
   } catch (error) {}
 };
 
+export const logInCustomer = async (input) =>{
+
+  const customerLogMutation = `
+  
+      mutation customerAccessTokenCreate($input : CustomerAccessTokenCreateInput!) {
+        customerAccessTokenCreate(input: $input) {
+          customerAccessToken {
+            accessToken
+            expiresAt
+          }
+          customerUserErrors {
+            message
+          }
+        }
+      }
+     
+  
+  `
+
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: customerLogMutation,
+      variables: {
+        // input: {
+        //   email: "himanshusethi9641@gmail.com",
+        //   password: "123456",
+        // },
+        input: {
+          ...input
+        },
+      },
+    });
+    console.log(response);
+    return response;
+  } catch (error) {}
+}
+
+
+
 export const createCustomer = async (input) => {
   const customerCreateQuery = `
   
@@ -260,6 +300,8 @@ export const createCustomer = async (input) => {
         customer {
           id
           email
+          firstName
+          lastName
         }
       }
     }
@@ -270,9 +312,12 @@ export const createCustomer = async (input) => {
     const response = await shopifyStorefront.post("", {
       query: customerCreateQuery,
       variables: {
+        // input: {
+        //   email: "himanshusethi9641@gmail.com",
+        //   password: "123456",
+        // },
         input: {
-          email: "himanshusethi9641@gmail.com",
-          password: "123456",
+          ...input
         },
       },
     });
