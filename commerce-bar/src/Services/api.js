@@ -3,7 +3,6 @@ import gql from "graphql-tag";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const shopifyAccessToken = import.meta.env.VITE_REACT_APP_API_KEY;
-
 const shopifyStorefront = axios.create({
   baseURL: apiUrl,
   headers: {
@@ -247,8 +246,7 @@ export const getRecommendedProducts = async (id) => {
   } catch (error) {}
 };
 
-export const logInCustomer = async (input) =>{
-
+export const logInCustomer = async (input) => {
   const customerLogMutation = `
   
       mutation customerAccessTokenCreate($input : CustomerAccessTokenCreateInput!) {
@@ -264,28 +262,77 @@ export const logInCustomer = async (input) =>{
       }
      
   
-  `
-
+  `;
 
   try {
     const response = await shopifyStorefront.post("", {
       query: customerLogMutation,
       variables: {
-        // input: {
-        //   email: "himanshusethi9641@gmail.com",
-        //   password: "123456",
-        // },
         input: {
-          ...input
+          ...input,
         },
       },
     });
     console.log(response);
     return response;
   } catch (error) {}
-}
+};
 
+export const logOutCustomer = async (token) => {
+  const logOutCustomerMutation = `mutation customerAccessTokenDelete($customerAccessToken: String!) {
+          customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
+            deletedAccessToken
+            deletedCustomerAccessTokenId
+            userErrors {
+              field
+              message
+            }
+          }
+        }`;
 
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: logOutCustomerMutation,
+      variables: {
+        // input: {
+        //   email: "himanshusethi9641@gmail.com",
+        //   password: "123456",
+        // },
+        customerAccessToken: token,
+      },
+    });
+    // console.log(response);
+    return response;
+  } catch (error) {}
+};
+
+export const fetchCustomer = async (token) => {
+  const customerFetchQuery = `
+  
+  query getCustomerQuery($customerAccessToken: String!) {
+    customer(customerAccessToken: $customerAccessToken) {
+      id
+      firstName
+      lastName
+      acceptsMarketing
+      email
+      phone
+    }
+  }
+  
+  `;
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: customerFetchQuery,
+      variables: {
+        customerAccessToken: token
+      },
+    });
+    console.log(response);
+    return response;
+  } catch (error) {}
+
+};
 
 export const createCustomer = async (input) => {
   const customerCreateQuery = `
@@ -312,12 +359,8 @@ export const createCustomer = async (input) => {
     const response = await shopifyStorefront.post("", {
       query: customerCreateQuery,
       variables: {
-        // input: {
-        //   email: "himanshusethi9641@gmail.com",
-        //   password: "123456",
-        // },
         input: {
-          ...input
+          ...input,
         },
       },
     });
@@ -325,3 +368,109 @@ export const createCustomer = async (input) => {
     return response;
   } catch (error) {}
 };
+
+
+export const generateCart = async (input)=>{
+  const  createCartMutation = `
+      mutation cartCreate {
+        cartCreate {
+          cart {
+            id
+            totalQuantity
+            checkoutUrl
+            note
+          }
+          userErrors {
+            field
+            message
+          }
+        }
+      }     
+  `
+
+
+  try {
+      const response = await shopifyStorefront.post("",{
+        query: createCartMutation,
+        variables: {
+          input: {
+            ...input,
+          },
+        },
+
+      })
+      return response;
+  } catch (error) {
+    
+  }
+}
+
+
+export const updateCartBuyerIdentity = async (buyerIdentity,cartId)=>{
+  console.log(buyerIdentity,cartId)
+  const  cartBuyerIDMutation = `
+      mutation cartBuyerIdentityUpdate($buyerIdentity: CartBuyerIdentityInput!, $cartId: ID!) {
+        cartBuyerIdentityUpdate(buyerIdentity: $buyerIdentity, cartId: $cartId) {
+          cart {
+            id
+          }
+          userErrors {  
+            field
+            message
+          }
+        }
+      }
+  `
+
+
+  try {
+      const response = await shopifyStorefront.post("",{
+        query: cartBuyerIDMutation,
+        variables: {
+          buyerIdentity: {
+            ...buyerIdentity
+          },
+          cartId : cartId
+        },
+
+      })
+      return response;
+  } catch (error) {
+    
+  }
+}
+
+export const getCartByID = async (cartID)=>{
+
+  const fetchCartQuery = `
+  
+    query cartFetch($id:ID!){
+        cart(id:$id) {
+          buyerIdentity{
+            customer{
+              
+              email
+              id
+            }
+          }
+          id
+          checkoutUrl
+        }
+    }
+  
+  `
+
+  try {
+    const response = await shopifyStorefront.post("",{
+      query: fetchCartQuery,
+      variables: {
+        id: cartID
+      },
+
+    })
+    return response;
+} catch (error) {
+  
+}
+
+}
