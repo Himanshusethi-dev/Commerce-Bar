@@ -12,8 +12,6 @@ import Header from './components/header/Header';
 import Register from './pages/Account/Register';
 import Login from './pages/Account/Login';
 import Customer from './pages/Account/Customer';
-import { useSelector, useDispatch } from 'react-redux';
-import { createCartThunk,updateBuyerIDThunk,fetchCartThunk } from './store/slices/cartSlice';
 import useCartFunctions from "./hooks/useCartFunctions"
 // import  {getCartByID} 
 

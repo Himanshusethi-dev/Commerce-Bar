@@ -29,11 +29,6 @@ const QuantitySelector = ({getQuantity}) => {
             }
 
     }
-
-
-    useEffect(()=>{
-     console.log('fdfjdfj')   
-    })
     useEffect(()=>{
         getQuantity(quantity)
 

@@ -5,19 +5,41 @@ import { createCustomer } from '../../../Services/api'
 import VariantSelector from '../../../components/variantSelector/VariantSelector';
 import QuantitySelector from '../../../components/quantitySelector/QuantitySelector';
 import {createMarkup} from '../../../helpers.js'
+import { useSelector,useDispatch } from 'react-redux';
+import { addToCart } from '../../../Services/api';
+import { fetchCartThunk } from '../../../store/slices/cartSlice.js';
 const ProductInfo = ({ data, vID, updateVariantID }) => {
+    const  dispatch  = useDispatch()
+    const cart = useSelector((state) => state.cart)
     const [currentQuantity, setCurrentQuantity] = useState(1)
+    const [cartLines,setCartLines]  = useState([]);
     const getQuantity = (qty) => {
         setCurrentQuantity(qty)
     }
 
    
-    const addProductToCart = () => {
+    const addProductToCart =  async () => {
+        const  cartLineObject = {
+            "merchandiseId": `gid://shopify/ProductVariant/${vID}`,
+            "quantity": currentQuantity
+        }
+        const resp = await addToCart(cart.cartId,cartLineObject)
+            dispatch(fetchCartThunk(cart.cartId))
+       
     }
 
-    const createCustomerTrigger = async () => {
-        const data = await createCustomer();
-    }
+    useEffect(()=>{
+        console.log(cartLines)
+    },[cartLines])
+
+    useEffect(()=>{
+
+        console.log("vod",vID)
+    },[vID])
+
+    // const createCustomerTrigger = async () => {
+    //     const data = await createCustomer();
+    // }
 
     return (
         <>
@@ -39,20 +61,13 @@ const ProductInfo = ({ data, vID, updateVariantID }) => {
                     </div>
                 }
                
-                <VariantSelector data={data} vID={vID} updateVariantID={updateVariantID} />
+                <VariantSelector data={data} vID={vID}  updateVariantID={updateVariantID} />
                 <QuantitySelector getQuantity={getQuantity} />
 
                 <div className="productFormButtons" >
-
-                    <button className="atcButton" onClick={() => { addProductToCart(currentQuantity) }}>
+                    <button    disabled={`${data?.totalInventory > 0 ? "" : "true" }`}   className="atcButton" onClick={() => { addProductToCart() }}>
                         Add to Cart
                     </button>
-
-
-                    {/* <button className="signup"  onClick={createCustomerTrigger}>
-                        SIGN UP
-                     </button> */}
-
                 </div>
                 {
                     data.descriptionHtml && (

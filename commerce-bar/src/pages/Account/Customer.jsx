@@ -20,26 +20,9 @@ const Customer = () => {
     }
 
     useEffect(() => {
-        
     }, [])
-
     const { isCustomer,customerData} =  useCustomerData();
-    // const getCustomerData = async () => {
-    //     if (authToken) {
-    //         try {
-    //             const resp = await fetchCustomer(authToken);
-    //             console.log("customerData", resp.data.data.customer)
-    //             setIsCustomer(true)
-    //             setCustomerData(resp.data.data.customer)
-    //         } catch (error) {
-    //             console.log(error)
-    //             setIsCustomer(false)
-    //         }
-    //     }else{
-    //         alert('Please log in')
-    //     }
 
-    // }
     return (
         <>
             <div>Customer</div>

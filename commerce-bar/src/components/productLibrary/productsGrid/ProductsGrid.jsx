@@ -19,11 +19,11 @@ const ProductsGrid = ({ data, type, vID }) => {
     const [sectionType, setSectionType] = useState('Related Products')
 
     const fetchRecommendedProducts = async () => {
-        console.log(type)
+        // console.log(type)
 
         try {
             const productsData = await getRecommendedProducts(data.id);
-            console.log(productsData)
+            // console.log(productsData)
             setProductList(productsData);
 
         } catch (error) {
@@ -42,7 +42,7 @@ const ProductsGrid = ({ data, type, vID }) => {
 
     useEffect(() => {
 
-        console.log(productList)
+        // console.log(productList)
     }, [productList])
 
     return (

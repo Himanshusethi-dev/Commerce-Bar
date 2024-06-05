@@ -199,7 +199,7 @@ export const getProductByHandle = async (handle) => {
       query: ProductQuery,
       variables: { handle: handle },
     });
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (error) {}
 };
@@ -241,7 +241,7 @@ export const getRecommendedProducts = async (id) => {
       query: recommendedProductsQuery,
       variables: { productId: id },
     });
-    console.log(response);
+    // console.log(response);
     return response.data.data.productRecommendations;
   } catch (error) {}
 };
@@ -444,19 +444,63 @@ export const getCartByID = async (cartID)=>{
 
   const fetchCartQuery = `
   
-    query cartFetch($id:ID!){
-        cart(id:$id) {
-          buyerIdentity{
-            customer{
-              
-              email
-              id
+  query cartFetch($id:ID!){
+    cart(id:$id) {
+      buyerIdentity{
+        customer{
+          
+          email
+          id
+        }
+      }
+      id
+      totalQuantity
+      cost{
+        totalAmount{
+          amount
+        }
+      }
+      lines(first: 10){
+        edges{
+          node{
+            id
+            quantity
+            cost{
+              amountPerQuantity{
+                amount
+              }
+              totalAmount{
+                amount
+              }
+            }
+            merchandise{
+              ... on ProductVariant{
+                id
+                price{
+                  amount
+                }
+                 compareAtPrice{
+                  amount
+                }
+                image{
+                  id
+                  url
+                }
+                product{
+                  handle
+                  id
+                  title
+                  vendor
+                }
+              }
             }
           }
-          id
-          checkoutUrl
         }
+      }
+      checkoutUrl
     }
+}
+
   
   `
 
@@ -472,5 +516,48 @@ export const getCartByID = async (cartID)=>{
 } catch (error) {
   
 }
+
+}
+
+export const addToCart = async (cartID,lines)=>{
+
+    const addToCartQuery = `
+    
+    mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+      cartLinesAdd(cartId: $cartId, lines: $lines) {
+        cart {
+         id
+         cost{
+          totalAmount{
+            amount
+          }
+         }
+         totalQuantity
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+    
+    `
+
+
+    try {
+
+      const response = await shopifyStorefront.post('',{
+          query : addToCartQuery,
+          variables: {
+            cartId: cartID,
+            lines: lines
+          },
+      })
+
+      return response;
+      
+    } catch (error) {
+      
+    }
 
 }

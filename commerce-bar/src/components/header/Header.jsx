@@ -10,19 +10,16 @@ const Header = () => {
         <div className='header'>
             <nav className="nav">
                 <Link to={'/collections-list'}>  Collections </Link>
-
                 {
                     authToken ? (
-
                         <Link to={'/account/profile'} > Account</Link>
                     )
-
                         : (
                             <Link to={'/account/login'} > Login</Link>
-
-
                         )
                 }
+                                <Link to={'/cart'}>  Cart </Link>
+
             </nav>
         </div>
     )

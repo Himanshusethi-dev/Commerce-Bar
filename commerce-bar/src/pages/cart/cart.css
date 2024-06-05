@@ -1,0 +1,75 @@
+.cartPage {
+    padding-top: 50px;
+    display: flex;
+}
+.cartItems {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    flex: 0 0 55%;
+}
+.cartItem{
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cartItemMedia {
+    flex: 0 0 180px;
+    width: 100%;
+}
+.cartItemImage {
+    overflow: hidden;
+    margin: auto;
+}
+.cartItemImage img {
+    width: 100%;
+}
+
+.productVendor {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+.cartItemTitle {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+}
+
+.infoContent {
+    width: 60%;
+    padding: 22px 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+}
+
+.itemPriceContainer {
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+}
+span.itemPrice {
+    font-weight: 500;
+}
+span.itemComparePrice {
+    color: rgba(0,0,0,0.5);
+    text-decoration: line-through;
+}
+button.quantityUpdateButton {
+    padding: 0 10px;
+    background: #213547;
+    margin-left: 9px;
+    cursor: pointer;
+}
+
+button.quantityUpdateButton:focus-visible {
+ outline: none;
+}

@@ -23,7 +23,7 @@ const useCartFunctions = () => {
 
     const cartInitialCreation = async () => {
         try {
-            if (cartId && authToken) {
+            if (cartId) {
                 // alert('Cart already created')
                 return;
             } else {
@@ -31,7 +31,7 @@ const useCartFunctions = () => {
 
                     "note": "<your-note>"
                 }))
-                console.log(resp)
+                // console.log(resp)
             }
         } catch (error) {
         }
@@ -47,8 +47,8 @@ const useCartFunctions = () => {
             }
         ))
 
-        console.log("Connecting cart to the customer")
-        console.log(resp)
+        // console.log("Connecting cart to the customer")
+        // console.log(resp)
     }
 
     return (

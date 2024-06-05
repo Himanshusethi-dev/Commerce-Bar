@@ -1,20 +1,59 @@
-import React from 'react'
-import { useState,useEffect } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
-import  {getCartByID}  from '../../Services/api'
-import {fetchCartThunk} from '../../store/slices/cartSlice'
+import React, { Fragment } from 'react'
+import "./cart.css"
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCartByID } from '../../Services/api'
+import { fetchCartThunk } from '../../store/slices/cartSlice'
+import CartLineItem from '../../components/cart/CartLineItem'
+import Modal from '../../components/modal/Modal'
 const Cart = () => {
   const dispatch = useDispatch();
-  // const { cartId,cartBuyer } = useSelector((state) => state.cart)
+  const { cartId, cartBuyer, cartData } = useSelector((state) => state.cart)
+  const [cartItems, setCartItems] = useState([]);
 
-  // useEffect(()=>{
+  useEffect(() => {
 
-  //   // getCartByID(cartId)
+    const cartDataItems = cartData.lines.edges;
 
-  //   dispatch(fetchCartThunk(cartId))
-  // },[cartId,cartBuyer])
+    setCartItems(cartDataItems);
+
+  }, [cartData])
+
+  useEffect(() => {
+
+    // getCartByID(cartId)
+
+    console.log(cartItems)
+  }, [cartItems])
   return (
-    <div>cart</div>
+
+
+    <div className="cartPage container">
+      <div className="cartItems">
+
+
+        {
+
+          cartItems.map((item) => {
+
+
+
+            return <Fragment key={item.node.merchandise.id}>
+
+              <CartLineItem lineItem={item.node} />
+             
+
+            </Fragment>
+
+
+          })
+        }
+
+     
+      </div>
+
+
+    </div>
   )
 }
 

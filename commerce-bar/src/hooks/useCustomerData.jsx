@@ -24,8 +24,6 @@ const useCustomerData = () => {
                 // console.log(error)
                 setIsCustomer(false)
             }
-        }else{
-            alert('Please log in')
         }
 
     }

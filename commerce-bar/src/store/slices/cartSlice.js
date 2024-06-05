@@ -36,7 +36,7 @@ export const  fetchCartThunk  = createAsyncThunk(
       const data = await getCartByID(cartId)
        const cartActionPayload =  data.data.data.cart
     //    console.log(cartActionPayload,"slicedCart")
-        // console.log(data.data.data.cart)
+         console.log(data.data.data.cart)
          return cartActionPayload;
     }
 
