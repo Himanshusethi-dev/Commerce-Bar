@@ -29,3 +29,8 @@
 .selectorButtonsContainer button.selected{
     border: 2px solid #538CEE;
 }
+
+.selectorButtonsContainer button.variantButton{
+    width: 50px;
+    height: 50px;
+}

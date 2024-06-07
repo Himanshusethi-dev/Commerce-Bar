@@ -1,21 +1,47 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import "./selectorButtons.css"
-const SelectorButtons = ({ quantityLimitArr,selectedQuantity }) => {
+const SelectorButtons = ({ type, limit, selectedValue, updateValue, setIsOpen }) => {
 
+    const [selectedButton, setSelectedButton] = useState(selectedValue)
+    const changeQuantity = () => {
+        setIsOpen(false)
+        updateValue(selectedButton, type)
+    }
+
+    
 
     return (
-
         <>
             <div className="selectorButtonsContainer">
                 <>
                     {
-                        quantityLimitArr.map((i) => {
+                        limit.map((value,i) => {
+
+                           
                             return (
-                                
-                                <button className={`${i === selectedQuantity ? "selected" : ""}`}    key={i}>
-                                    {i}
-                                 </button>
-                
+
+                                <>
+
+                                    {
+                                        type === 'quantity' ? (
+
+
+                                            <button onClick={() => { setSelectedButton(value) }} className={`quantityButton  ${value === selectedButton ? "selected" : ""}`} key={i}>
+                                                {value}
+                                            </button>
+
+                                        )
+                                            :
+                                            (
+                                                <button onClick={() => { setSelectedButton(value.id) }} className={`variantButton  ${value.id === selectedButton ? "selected" : ""}`} key={i}>
+                                                    {value.title}
+                                                </button>
+                                            )
+                                    }
+
+
+                                </>
+
                             )
                         }
                         )
@@ -23,12 +49,10 @@ const SelectorButtons = ({ quantityLimitArr,selectedQuantity }) => {
                 </>
             </div>
 
-           
+            <button onClick={() => { changeQuantity() }}>
+                Done
+            </button>
         </>
-
-
-
-
     )
 }
 

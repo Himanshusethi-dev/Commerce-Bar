@@ -491,6 +491,23 @@ export const getCartByID = async (cartID)=>{
                   id
                   title
                   vendor
+                  variants(first:3){
+                    edges{
+                      node{
+                        price{
+                          amount
+                          currencyCode
+                        }
+                        compareAtPrice{
+                          amount
+                          currencyCode
+                        }
+                        id
+                        title
+                        quantityAvailable
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -503,7 +520,9 @@ export const getCartByID = async (cartID)=>{
 
   
   `
-
+  // variantBySelectedOptions(selectedOptions){
+  //   id
+  // }
   try {
     const response = await shopifyStorefront.post("",{
       query: fetchCartQuery,
@@ -559,5 +578,83 @@ export const addToCart = async (cartID,lines)=>{
     } catch (error) {
       
     }
+
+}
+
+export const updateCartLine = async (cartID,lines)=>{
+console.log("ho rha h ")
+
+  const cartLineUpdateMutation = `
+  
+        mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+          cartLinesUpdate(cartId: $cartId, lines: $lines) {
+            cart {
+              id
+             }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+  
+  `
+
+
+    try {
+
+      const response = await shopifyStorefront.post('',{
+          query : cartLineUpdateMutation,
+          variables: {
+            cartId: cartID,
+            lines: [lines]
+          },
+      })
+        console.log(response,"updateCart")
+      return response;
+      
+    } catch (error) {
+      
+    }
+
+
+}
+
+
+export const deleteCartLine = async (cartID,lineIds)=>{
+
+  const  cartLineItemDeleteMutation = `
+  
+      mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+        cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+          cart {
+            id
+          }
+          userErrors {
+            field
+            message
+          }
+        }
+      }
+
+
+  
+  
+  `
+
+
+
+  try{
+      const response = await shopifyStorefront.post("",{
+        query : cartLineItemDeleteMutation,
+        variables : {
+          cartId : cartID,
+          lineIds : lineIds
+        }
+      })
+
+  }catch(error){
+
+  }
 
 }

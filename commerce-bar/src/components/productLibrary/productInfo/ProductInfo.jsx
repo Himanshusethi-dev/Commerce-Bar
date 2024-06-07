@@ -25,6 +25,7 @@ const ProductInfo = ({ data, vID, updateVariantID }) => {
         }
         const resp = await addToCart(cart.cartId,cartLineObject)
             dispatch(fetchCartThunk(cart.cartId))
+            console.log("Resp",resp)
        
     }
 

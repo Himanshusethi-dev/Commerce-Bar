@@ -20,20 +20,19 @@ const Modal = ({ isOpen, setIsOpen, children, type }) => {
                   </button>
                 </div>
                 <div className="modalContentContainer">
-
                   <div className="header">
-                    {type == 'quantity' ? (
-                    
-                    <div className='headerText'>
-                        Select Quantity
-                    </div>) 
-                    
+                    {type != null ? (
+                        <div className='headerText'>
+                            Select {type}
+                        </div>
+                    ) 
                     : (
-                      <div></div>
+                     ""
                     )}
                   </div>
-                  {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, dolores. Facere illo quis esse tempore, neque in mollitia excepturi iste? */}
-                  {children}
+                  <div className="modalContent">
+                      {children}
+                  </div>
                 </div>
               </div>
 

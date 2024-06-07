@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { generateCart,updateCartBuyerIdentity,getCartByID } from "../../Services/api";
+import { generateCart,updateCartBuyerIdentity,getCartByID,updateCartLine,deleteCartLine } from "../../Services/api";
 const initialState = {
     cartId : null,
     cartBuyer : null,
-    cartData : {}
+    cartData : {},
 }
 
 export const createCartThunk = createAsyncThunk(
@@ -42,6 +42,29 @@ export const  fetchCartThunk  = createAsyncThunk(
 
 )
 
+export const updateCartLineThunk = createAsyncThunk(
+    'cart/updateCart',
+    async (args)=>{
+        console.log("rereder",args.cartId,args.lines)
+         const data = await updateCartLine(args.cartId,args.lines)
+         console.log("cartUpdateRedux",data)
+           return data
+    }
+
+)
+
+export const deleteCartLineThunk = createAsyncThunk(
+    'cart/deleteCartLine',
+    async (args)=>{
+        // console.log("rereder",args.cartId,args.lines)
+        console.log("rereder",args.cartId,args.lineIds)
+         const data = await deleteCartLine(args.cartId,args.lineIds)
+         console.log("cartUpdateRedux",data)
+           return data
+    }
+
+)
+
 
 export const cartSlice = createSlice({
     name: "cart",
@@ -60,6 +83,12 @@ export const cartSlice = createSlice({
             state.cartBuyer = action.payload.id
         }).addCase(fetchCartThunk.fulfilled,(state,action)=>{
             state.cartData = {...action.payload} 
+        })
+        .addCase(updateCartLineThunk.fulfilled,(state,action)=>{
+            // state.cartId = action.payload.id 
+            // return action.payload;
+        }).addCase(deleteCartLineThunk.fulfilled,(state,action)=>{
+
         })
     }
 })
