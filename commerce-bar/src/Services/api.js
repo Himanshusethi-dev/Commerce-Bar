@@ -15,7 +15,7 @@ export const getCollectionsQuery = async () => {
   const query = `
 
     {
-        collections(first:10){
+        collections(first:25){
           edges{
             node{
               handle
@@ -157,7 +157,7 @@ export const getProductByHandle = async (handle) => {
         name
         values
       }
-      variants(first:2){
+      variants(first:5){
         edges{
           node{
             price{

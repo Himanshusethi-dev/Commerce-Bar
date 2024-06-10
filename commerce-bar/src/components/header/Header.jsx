@@ -1,4 +1,5 @@
 import React from 'react'
+import "./header.css"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -8,7 +9,7 @@ const Header = () => {
 
     return (
         <div className='header'>
-            <nav className="nav">
+            <nav className="nav container">
                 <Link to={'/collections-list'}>  Collections </Link>
                 {
                     authToken ? (

@@ -54,7 +54,7 @@ const ProductInfo = ({ data, vID, updateVariantID }) => {
                 <Price data={data} vID={vID} />
 
                 {
-                    data.totalInventory > 0 ? (
+                    data.totalInventory > 0 && data.totalInventory < 20 ? (
                         <div>{data.totalInventory} left</div>
                     ) : 
                     <div className="outOfStockLabel">

@@ -20,9 +20,9 @@ const Modal = ({ isOpen, setIsOpen, children, type }) => {
                   </button>
                 </div>
                 <div className="modalContentContainer">
-                  <div className="header">
+                  <div className="modalHeader">
                     {type != null ? (
-                        <div className='headerText'>
+                        <div className='modalHeaderText'>
                             Select {type}
                         </div>
                     ) 

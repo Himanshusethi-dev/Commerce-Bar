@@ -30,7 +30,7 @@ const MainFilters = ({ data, getAllSelectedFilters }) => {
     }
 
 
-     const removeFilter = (selectedFiltersList,input,toAddFilter,filterValue)=>{
+    const removeFilter = (selectedFiltersList, input, toAddFilter, filterValue) => {
         selectedFiltersList.forEach((filter, index, arr) => {
             if ('price' in filter && 'price' in filterValue) {
                 selectedFiltersList.splice(index, 1)
@@ -42,7 +42,7 @@ const MainFilters = ({ data, getAllSelectedFilters }) => {
         })
 
         return toAddFilter;
-        
+
     }
 
 
@@ -51,7 +51,7 @@ const MainFilters = ({ data, getAllSelectedFilters }) => {
         const filterValue = JSON.parse(input);
         let toAddFilter = true;
         console.log(validArr)
-        toAddFilter = removeFilter(validArr,input,toAddFilter,filterValue)
+        toAddFilter = removeFilter(validArr, input, toAddFilter, filterValue)
         if (toAddFilter) {
             validArr.push(filterValue);
         }
@@ -77,45 +77,60 @@ const MainFilters = ({ data, getAllSelectedFilters }) => {
     return (
 
         <>
-            <div>Filter: </div>
-
-            <div className="filterInner">
 
 
-                <div className="filterGroup">
-                    {
+            {
 
-                        data?.products?.filters?.map((fl) => (
+                data.products.filters.length >= 1 &&
 
-                            <Fragment key={fl.id}>
-
-
-                                <Accordion
-
-                                    fl={fl}
-                                    minPriceValue={minPriceValue}
-                                    maxPriceValue={maxPriceValue}
-                                    priceRangeQuery={priceRangeQuery}
-                                    filterOperation={filterOperation}
-                                    initPriceRange={initPriceRange}
-                                />
+                (
+                    <>
 
 
-
-                            </Fragment>
-                        ))
-
-                    }
+                        <div>Filter: </div>
+                        <div className="filterInner">
 
 
-                </div >
+                            <div className="filterGroup">
+                                {
+
+                                    data?.products?.filters?.map((fl) => (
+
+                                        <Fragment key={fl.id}>
 
 
-                <div>
-                    <button className='applyFilterButton' type="button" onClick={filterCall}>Apply</button>
+                                            <Accordion
 
-                </div>
-            </div>
+                                                fl={fl}
+                                                minPriceValue={minPriceValue}
+                                                maxPriceValue={maxPriceValue}
+                                                priceRangeQuery={priceRangeQuery}
+                                                filterOperation={filterOperation}
+                                                initPriceRange={initPriceRange}
+                                            />
+
+
+
+                                        </Fragment>
+                                    ))
+
+                                }
+
+
+                            </div >
+
+
+                            <div>
+                                <button className='applyFilterButton' type="button" onClick={filterCall}>Apply</button>
+                            </div>
+
+
+
+                        </div>
+
+                    </>
+                )
+            }
 
 
         </>

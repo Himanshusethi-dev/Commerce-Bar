@@ -27,15 +27,15 @@ const ProductCard = ({ item, data, index }) => {
     }
 
     return (
-        <div className="ProductCard" >
+        <div className="productCard" >
 
             <div className="productImage" onClick={() => { navigateHandle(`${item.handle}`) }} >
                 {
                     item.images?.edges.length > 0 ? (
 
-                        <img width='150' src={`${item.images?.edges[0].node.url}`} alt="" />
+                        <img width='250' src={`${item.images?.edges[0].node.url}`} alt="" />
                     ) : (
-                        <img width='150' src={placeholderImage} alt="" />
+                        <img width='250' src={placeholderImage} alt="" />
 
                     )
                 }

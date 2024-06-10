@@ -5,7 +5,7 @@
     column-gap: 10px;
 }
 
-.ProductCard {
+.productCard {
     flex: 0 0 22%;
     padding: 5px;
     background: #fff;
@@ -15,7 +15,11 @@
     background: rgb(255, 255, 255);
     border: 0.5px solid rgb(232, 232, 232);
     cursor: pointer;
-    max-width: 200px;
+    min-height: 450px;
+}
+.productImage {
+    max-height: 300px;
+    height: 100%;
 }
 .collectionProductList{
     margin-top: 20px;

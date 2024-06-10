@@ -8,15 +8,10 @@ const Filter = ({ getSortParams, data }) => {
     getSortParams(e.target.value)
 
   }
-
  
-
   return (
 
-
     <>
-
-
 
       <div className="sortByFilter">
 
