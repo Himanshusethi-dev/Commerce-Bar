@@ -1,0 +1,106 @@
+ul.menuItems {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    justify-content: center;
+    background: white;
+    align-items: center;
+    position: relative;
+}
+.menuItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: white;
+    min-height: 400px; */
+}
+.menuItems li a {
+    color: #000;
+    font-family: 'Poppins';
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+.megaMenuPanel {
+    background: white;
+    min-height: 400px;
+    position: absolute;
+    width: 100%;
+    top: 44px;
+    left: 0;
+}
+.menuItem .megaMenuPanel{
+    opacity: 0;
+    display: flex;
+    visibility: hidden;
+   
+    /* gap: 5%; */
+}
+.menuItem.isActive .megaMenuPanel{
+   opacity: 1;
+   visibility: visible;
+   z-index: 1000;
+}
+.insidePanelMenuItems {
+    flex: 0 0 20%;
+    padding-left: 20px;
+}
+.insideShowcase {
+    flex: 0 0 75%;
+    display: flex;
+}
+.menuShowcaseImage {
+    flex: 0 0 25%;
+}
+.menuShowcaseImage img {
+    width: 100%;
+    height: 100%;
+}
+
+.menuLevelTwoTitle {
+    text-align: left;
+    width: 60%;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: Poppins;
+    color: rgb(13 4 4 / 90%);
+}
+
+ul.menuLevelTwoItems {
+    padding: 0;
+    width: 60%;
+    text-align: left;
+}
+li.menuLevelTwoItem {
+    list-style: none;
+    
+    /* padding-left: 0; */
+}
+
+.menuLevelTwoItems li.menuLevelTwoItem a{
+    color: #000;
+    font-family: 'Poppins';
+    font-weight: 500;
+    padding: 10px 0;
+    font-size: 17px;
+    font-family: 'Poppins';
+    line-height: 27px;
+    color: #1c345f;
+}
+
+.menuShowcaseProducts {
+    /* display: grid; */
+    /* grid-template-rows: repeat(3,1fr); */
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 15px;
+    flex: 0 0 60%;
+    gap: 15px;
+}
+
+.menuShowcaseProducts .productCard{
+    flex: 0 0 40%;
+}
+

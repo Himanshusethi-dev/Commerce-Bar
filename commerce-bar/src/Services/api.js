@@ -204,6 +204,72 @@ export const getProductByHandle = async (handle) => {
   } catch (error) {}
 };
 
+
+
+export const getProductById = async (id) => {
+  const productByIdQuery = `
+
+        query getProductById($id: ID!) {
+        product(id: $id) {
+              descriptionHtml
+              handle
+              totalInventory
+              title
+              id
+              vendor
+              options(first:2){
+                id
+                name
+                values
+              }
+              variants(first:5){
+                edges{
+                  node{
+                    price{
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice{
+                      amount
+                      currencyCode
+                    }
+                    id
+                    title
+                  }
+                }
+              }
+              featuredImage{
+                width
+                id
+                url
+              }
+              images(first:5){
+                edges{
+                  node{
+                    id
+                    width
+                    url
+                  }
+                }
+              }
+          }
+          
+        }
+
+  `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: productByIdQuery,
+      variables: {
+        id: id,
+      },
+    });
+    // console.log(response);
+    return response;
+  } catch (error) {}
+};
+
 export const getRecommendedProducts = async (id) => {
   const recommendedProductsQuery = `
 
@@ -325,13 +391,12 @@ export const fetchCustomer = async (token) => {
     const response = await shopifyStorefront.post("", {
       query: customerFetchQuery,
       variables: {
-        customerAccessToken: token
+        customerAccessToken: token,
       },
     });
     console.log(response);
     return response;
   } catch (error) {}
-
 };
 
 export const createCustomer = async (input) => {
@@ -369,9 +434,8 @@ export const createCustomer = async (input) => {
   } catch (error) {}
 };
 
-
-export const generateCart = async (input)=>{
-  const  createCartMutation = `
+export const generateCart = async (input) => {
+  const createCartMutation = `
       mutation cartCreate {
         cartCreate {
           cart {
@@ -386,29 +450,24 @@ export const generateCart = async (input)=>{
           }
         }
       }     
-  `
-
+  `;
 
   try {
-      const response = await shopifyStorefront.post("",{
-        query: createCartMutation,
-        variables: {
-          input: {
-            ...input,
-          },
+    const response = await shopifyStorefront.post("", {
+      query: createCartMutation,
+      variables: {
+        input: {
+          ...input,
         },
+      },
+    });
+    return response;
+  } catch (error) {}
+};
 
-      })
-      return response;
-  } catch (error) {
-    
-  }
-}
-
-
-export const updateCartBuyerIdentity = async (buyerIdentity,cartId)=>{
-  console.log(buyerIdentity,cartId)
-  const  cartBuyerIDMutation = `
+export const updateCartBuyerIdentity = async (buyerIdentity, cartId) => {
+  console.log(buyerIdentity, cartId);
+  const cartBuyerIDMutation = `
       mutation cartBuyerIdentityUpdate($buyerIdentity: CartBuyerIdentityInput!, $cartId: ID!) {
         cartBuyerIdentityUpdate(buyerIdentity: $buyerIdentity, cartId: $cartId) {
           cart {
@@ -420,28 +479,23 @@ export const updateCartBuyerIdentity = async (buyerIdentity,cartId)=>{
           }
         }
       }
-  `
-
+  `;
 
   try {
-      const response = await shopifyStorefront.post("",{
-        query: cartBuyerIDMutation,
-        variables: {
-          buyerIdentity: {
-            ...buyerIdentity
-          },
-          cartId : cartId
+    const response = await shopifyStorefront.post("", {
+      query: cartBuyerIDMutation,
+      variables: {
+        buyerIdentity: {
+          ...buyerIdentity,
         },
+        cartId: cartId,
+      },
+    });
+    return response;
+  } catch (error) {}
+};
 
-      })
-      return response;
-  } catch (error) {
-    
-  }
-}
-
-export const getCartByID = async (cartID)=>{
-
+export const getCartByID = async (cartID) => {
   const fetchCartQuery = `
   
   query cartFetch($id:ID!){
@@ -519,28 +573,23 @@ export const getCartByID = async (cartID)=>{
 }
 
   
-  `
+  `;
   // variantBySelectedOptions(selectedOptions){
   //   id
   // }
   try {
-    const response = await shopifyStorefront.post("",{
+    const response = await shopifyStorefront.post("", {
       query: fetchCartQuery,
       variables: {
-        id: cartID
+        id: cartID,
       },
-
-    })
+    });
     return response;
-} catch (error) {
-  
-}
+  } catch (error) {}
+};
 
-}
-
-export const addToCart = async (cartID,lines)=>{
-
-    const addToCartQuery = `
+export const addToCart = async (cartID, lines) => {
+  const addToCartQuery = `
     
     mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
       cartLinesAdd(cartId: $cartId, lines: $lines) {
@@ -560,29 +609,23 @@ export const addToCart = async (cartID,lines)=>{
       }
     }
     
-    `
+    `;
 
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: addToCartQuery,
+      variables: {
+        cartId: cartID,
+        lines: lines,
+      },
+    });
 
-    try {
+    return response;
+  } catch (error) {}
+};
 
-      const response = await shopifyStorefront.post('',{
-          query : addToCartQuery,
-          variables: {
-            cartId: cartID,
-            lines: lines
-          },
-      })
-
-      return response;
-      
-    } catch (error) {
-      
-    }
-
-}
-
-export const updateCartLine = async (cartID,lines)=>{
-console.log("ho rha h ")
+export const updateCartLine = async (cartID, lines) => {
+  console.log("ho rha h ");
 
   const cartLineUpdateMutation = `
   
@@ -598,32 +641,23 @@ console.log("ho rha h ")
           }
         }
   
-  `
+  `;
 
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: cartLineUpdateMutation,
+      variables: {
+        cartId: cartID,
+        lines: [lines],
+      },
+    });
+    console.log(response, "updateCart");
+    return response;
+  } catch (error) {}
+};
 
-    try {
-
-      const response = await shopifyStorefront.post('',{
-          query : cartLineUpdateMutation,
-          variables: {
-            cartId: cartID,
-            lines: [lines]
-          },
-      })
-        console.log(response,"updateCart")
-      return response;
-      
-    } catch (error) {
-      
-    }
-
-
-}
-
-
-export const deleteCartLine = async (cartID,lineIds)=>{
-
-  const  cartLineItemDeleteMutation = `
+export const deleteCartLine = async (cartID, lineIds) => {
+  const cartLineItemDeleteMutation = `
   
       mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
         cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
@@ -640,21 +674,187 @@ export const deleteCartLine = async (cartID,lineIds)=>{
 
   
   
+  `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: cartLineItemDeleteMutation,
+      variables: {
+        cartId: cartID,
+        lineIds: lineIds,
+      },
+    });
+  } catch (error) {}
+};
+
+export const getMenuByHandle = async (handle) => {
+  const menuQuery = ` 
+     query Menu($handle: String!){
+      menu(handle:$handle) {
+        handle
+        id
+        title
+        itemsCount
+        items{
+          id
+          type
+          title
+          tags
+          resource{
+            ...on Collection{
+              handle
+            }
+          }
+          items{
+            id
+            type
+            title
+            tags
+              resource{
+            ...on Collection{
+              handle
+            }
+          }
+          }
+        }
+      }
+    }
+  
+  `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: menuQuery,
+      variables: {
+        handle: handle,
+      },
+    });
+
+    // console.log(response)
+
+    return response;
+  } catch (error) {}
+};
+
+export const getMenuCollectionsData = async (handle) => {
+  const menuCollectionQuery = ` 
+     query collectionQuery($handle: String!){
+           collection(handle:$handle){
+                descriptionHtml
+                handle
+                title
+                id
+                image{
+                  url
+                }
+                metafields(identifiers: [
+                  { namespace: "custom", key: "collection_menu_data" },
+                ]) {
+                  namespace
+                  key
+                  value
+                  type
+                }
+
+           }
+    }
+  
+  `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: menuCollectionQuery,
+      variables: {
+        handle: handle,
+      },
+    });
+
+    // console.log(response)
+
+    return response;
+  } catch (error) {}
+};
+
+export const getMetaObjectByID = async (id) => {
+  const metaObjectQuery = `
+    
+        query metaObjectQuery($id:ID!){
+          metaobject(id:$id){
+            id
+            type
+            fields{
+              key
+              value
+              reference{
+                ...on MediaImage{
+                  image{
+                    url
+                  }
+                }
+                ...on Collection{
+                  description
+                }
+              }
+            }
+          }
+        }
+    
+    
+    `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: metaObjectQuery,
+      variables: {
+        id: id,
+      },
+    });
+
+    // console.log(response)
+
+    return response;
+  } catch (error) {}
+};
+
+
+
+export const getMedia = async (id)=>{
+
+
+
+  const getMediaQuery = `
+  
+
+    query getMediaImage($id: ID!) {
+      node(id: $id) {
+        ... on MediaImage {
+          id
+          alt
+          image {
+            url
+            altText
+            width
+            height
+          }
+        }
+      }
+    }
+
+  
   `
 
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: getMediaQuery,
+      variables: {
+        id: id,
+      },
+    });
 
+    // console.log(response)
 
-  try{
-      const response = await shopifyStorefront.post("",{
-        query : cartLineItemDeleteMutation,
-        variables : {
-          cartId : cartID,
-          lineIds : lineIds
-        }
-      })
+    return response;
+  } catch (error) {}
 
-  }catch(error){
-
-  }
 
 }

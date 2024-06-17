@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./header.css"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import NavigationMenu from './NavigationMenu'
 
 const Header = () => {
 
@@ -9,7 +10,7 @@ const Header = () => {
 
     return (
         <div className='header'>
-            <nav className="nav container">
+            <div className="headerBox container">      
                 <Link to={'/collections-list'}>  Collections </Link>
                 {
                     authToken ? (
@@ -19,9 +20,10 @@ const Header = () => {
                             <Link to={'/account/login'} > Login</Link>
                         )
                 }
-                                <Link to={'/cart'}>  Cart </Link>
+                <Link to={'/cart'}>  Cart </Link>
 
-            </nav>
+            </div>
+            <NavigationMenu  />
         </div>
     )
 }

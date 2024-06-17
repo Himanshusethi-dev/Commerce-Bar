@@ -35,7 +35,7 @@ const ProductList = () => {
 
     useEffect(() => {
         getAllProducts()
-    }, [sortvalue, sortOrder, allFilters])
+    }, [sortvalue, sortOrder, allFilters,handle])
 
     const getAllProducts = async () => {
         let filt = [sortvalue, sortOrder, allFilters]
@@ -65,14 +65,14 @@ const ProductList = () => {
                         </div>
                         <div className="collectionMedia">
                             <div className="collectionImage">
-                                <img src={`${data.image.url}`} alt="" />
+                                <img src={`${data?.image?.url}`} alt="" />
                             </div>
                         </div>
                     </div>
 
                     {
 
-                        data.products.filters.length >= 1 && (
+                        data?.products?.filters?.length >= 1 && (
 
                             <div className="plpSortBy">
                                 <Filter data={data} getSortParams={getSortParams} />

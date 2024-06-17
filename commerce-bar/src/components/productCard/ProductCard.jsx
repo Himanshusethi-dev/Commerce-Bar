@@ -64,18 +64,22 @@ const ProductCard = ({ item, data, index }) => {
 
 
                 {
-                    Number(item.priceRange.minVariantPrice.amount) !== Number(item.priceRange.maxVariantPrice.amount) ? (
-                        <div className="priceRange">
-                            <span> Rs. {Number(item.priceRange.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
-                        </div>
 
-
-                    ) :
-                        (
-                            <div className="price">
-                                Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}
+                    item?.priceRange && (
+                        Number(item?.priceRange?.minVariantPrice.amount) !== Number(item.priceRange.maxVariantPrice.amount) ? (
+                            <div className="priceRange">
+                                <span> Rs. {Number(item?.priceRange?.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
                             </div>
-                        )
+
+
+                        ) :
+                            (
+                                <div className="price">
+                                    Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}
+                                </div>
+                            )
+                    )
+
 
 
 
