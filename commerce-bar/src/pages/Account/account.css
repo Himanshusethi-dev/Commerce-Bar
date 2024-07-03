@@ -1,0 +1,89 @@
+form.authForm {
+    max-width: 350px;
+    margin: auto;
+}
+.headingText{
+    font-size: 18px;
+}
+.userField {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 15px;
+}
+.fieldContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.authForm input {
+    background-color: white;
+    color: #000;
+    max-width: 330px;
+    width: 100%;
+    border: 1px solid #887a7a;
+    border-radius: 2px;
+    padding: 14px 6px;
+    /* transition: padding 0.4s; */
+}
+.authForm label {
+    text-align: left;
+    max-width: 350px;
+    width: max-content;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+    transition: top 0.4s;
+    transition :translateY(-50%) 0.4s;
+}
+.authForm .labelShare label{
+    font-size: 14px;
+    top: 0%;
+    transform: translateY(0%);
+   
+}
+.labelShare input {
+    padding-bottom: 5px;
+    padding-top: 19px;
+    
+}
+
+.formButton {
+    width: 95%;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.errorMessage {
+    font-size: 13px;
+    text-align: left;
+    color: red;
+}
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+/* .fieldContainer {
+    display: flex;
+}
+.togglePasswordVisibility{
+    margin-left: 5px;
+} */
+
+span.togglePasswordVisibility {
+    position: absolute;
+    right: -26px;
+    cursor: pointer;
+    line-height: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+

@@ -23,19 +23,20 @@ const ProductCard = ({ item, data, index }) => {
     }
 
     const navigateHandle = (handle, idString) => {
+        window.scrollTo(0,0);
         navigate(`/products/${handle}`)
     }
 
     return (
-        <div className="ProductCard" >
+        <div className="productCard" >
 
             <div className="productImage" onClick={() => { navigateHandle(`${item.handle}`) }} >
                 {
                     item.images?.edges.length > 0 ? (
 
-                        <img width='150' src={`${item.images?.edges[0].node.url}`} alt="" />
+                        <img  src={`${item.images?.edges[0].node.url}`} alt="" />
                     ) : (
-                        <img width='150' src={placeholderImage} alt="" />
+                        <img  src={placeholderImage} alt="" />
 
                     )
                 }
@@ -64,18 +65,22 @@ const ProductCard = ({ item, data, index }) => {
 
 
                 {
-                    Number(item.priceRange.minVariantPrice.amount) !== Number(item.priceRange.maxVariantPrice.amount) ? (
-                        <div className="priceRange">
-                            <span> Rs. {Number(item.priceRange.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
-                        </div>
 
-
-                    ) :
-                        (
-                            <div className="price">
-                                Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}
+                    item?.priceRange && (
+                        Number(item?.priceRange?.minVariantPrice.amount) !== Number(item.priceRange.maxVariantPrice.amount) ? (
+                            <div className="priceRange">
+                                <span> Rs. {Number(item?.priceRange?.minVariantPrice.amount).toFixed(0)}</span> - <span>Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}  </span>
                             </div>
-                        )
+
+
+                        ) :
+                            (
+                                <div className="price">
+                                    Rs. {Number(item.priceRange.maxVariantPrice.amount).toFixed(0)}
+                                </div>
+                            )
+                    )
+
 
 
 

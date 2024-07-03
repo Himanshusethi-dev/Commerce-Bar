@@ -62,7 +62,7 @@ const CollectionsList = () => {
 
 
                                         <div className="coll-image">
-                                            <img src={`${item.node.image.url}`} alt="" />
+                                            <img src={`${item?.node?.image?.url}`} alt="" />
                                         </div>
 
                                     </div>

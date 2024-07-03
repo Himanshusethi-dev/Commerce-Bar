@@ -8,11 +8,21 @@
 }
 
 .variantTileValue {
-    background: #538CEE;
+    border: 2px solid #d3399a;
     color: #fff;
     padding: 5px;
     border-radius: 3px;
+    background: white;
+    color: rgba(0,0,0,0.7);
+    font-family: Poppins;
+    font-size: 13px;
+    border-radius: 8px;
 }
+.variantTileValue:hover,.variantTileValue:focus-visible,.variantTileValue:focus  {
+    border: 2px solid #6b0a47;
+    outline: none;
+}
+
 .optionCategory{
     text-align: left;
 }

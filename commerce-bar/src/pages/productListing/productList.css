@@ -13,3 +13,42 @@
     font-weight: 400;
     margin-bottom: 20px;
 }
+.plpSortBy {
+    margin: 50px 0;
+}
+.filterTitle {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.filterTitle label {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.plpSortBy select#sort-by {
+    background: white;
+    color: black;
+    padding: 9px;
+    font-size: 14px;
+}
+
+.plpSortBy select#sort-by option {
+    font-size: 15px;
+}
+.collectionImage {
+    max-width: 350px;
+    /* margin-right: auto; */
+    overflow: hidden;
+}
+
+.collectionImage img{
+    width: 100%;
+}
+.collectionContent {
+    flex: 0 0 70%;
+}
+.collectionMedia {
+    flex: 0 0 30%;
+}

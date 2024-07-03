@@ -1,12 +1,13 @@
 #root {
-  max-width: 1580px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+  background-color: #cb7ade1c;
+  width: 100vw;
 }
 .container{
   max-width: 1560px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 .logo {
   height: 6em;
@@ -19,6 +20,13 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.atcButton:disabled{
+  cursor: no-drop;   
+}
+.slick-slide img{
+  margin: auto;
 }
 
 @keyframes logo-spin {
@@ -42,4 +50,19 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.deleteButton {
+  width: 25px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.deleteButton svg{
+  color: rgb(255 54 54 / 90%);
+    width: 100%;
+    height: 100%;
 }

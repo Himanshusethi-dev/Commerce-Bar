@@ -1,0 +1,6 @@
+.header {
+    margin-bottom: 100px;
+    background-color: white;
+    position: relative;
+    z-index: 10;
+}
