@@ -25,6 +25,9 @@
 .atcButton:disabled{
   cursor: no-drop;   
 }
+.slick-slide img{
+  margin: auto;
+}
 
 @keyframes logo-spin {
   from {

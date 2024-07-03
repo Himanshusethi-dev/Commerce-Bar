@@ -1,15 +1,19 @@
 .modalOverlay {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0.7);
+    z-index: 11;
 }
-
+.modalContentContainer {
+    width: 100%;
+}
 .modalBox {
     position: relative;
-    width: 300px;
+    width: 375px;
+    min-height: 300px;
     border: 1px solid black;
     top: 50%;
     transform: translateY(-50%);
@@ -17,6 +21,9 @@
     background: white;
     padding: 10px;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
 .closeModalButton {

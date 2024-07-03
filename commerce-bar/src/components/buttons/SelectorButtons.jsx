@@ -8,50 +8,44 @@ const SelectorButtons = ({ type, limit, selectedValue, updateValue, setIsOpen })
         updateValue(selectedButton, type)
     }
 
-    
+
 
     return (
         <>
             <div className="selectorButtonsContainer">
                 <>
-                    {
-                        limit.map((value,i) => {
-
-                           
-                            return (
-
-                                <>
-
-                                    {
-                                        type === 'quantity' ? (
-
-
-                                            <button onClick={() => { setSelectedButton(value) }} className={`quantityButton  ${value === selectedButton ? "selected" : ""}`} key={i}>
-                                                {value}
-                                            </button>
-
-                                        )
-                                            :
-                                            (
-                                                <button onClick={() => { setSelectedButton(value.id) }} className={`variantButton  ${value.id === selectedButton ? "selected" : ""}`} key={i}>
-                                                    {value.title}
+                    <div className="selectorButtons">
+                        {
+                            limit.map((value, i) => {
+                                return (
+                                    <>
+                                        {
+                                            type === 'quantity' ? (
+                                                <button onClick={() => { setSelectedButton(value) }} className={`quantityButton  ${value === selectedButton ? "selected" : ""}`} key={i}>
+                                                    {value}
                                                 </button>
                                             )
-                                    }
-
-
-                                </>
-
+                                                :
+                                                (
+                                                    <button onClick={() => { setSelectedButton(value.id) }} className={`variantButton  ${value.id === selectedButton ? "selected" : ""}`} key={i}>
+                                                        {value.title}
+                                                    </button>
+                                                )
+                                        }
+                                    </>
+                                )
+                            }
                             )
                         }
-                        )
-                    }
+                    </div>
+
+                    <button  className='selectionSubmit' onClick={() => { changeQuantity() }}>
+                        Done
+                    </button>
                 </>
             </div>
 
-            <button onClick={() => { changeQuantity() }}>
-                Done
-            </button>
+
         </>
     )
 }

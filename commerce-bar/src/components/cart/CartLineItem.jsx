@@ -8,9 +8,9 @@ import SelectorButtons from '../buttons/SelectorButtons';
 import { updateCartLine } from '../../Services/api';
 import { updateCartLineThunk, fetchCartThunk,deleteCartLineThunk } from '../../store/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
-
+import { useDispatch,useSelector } from 'react-redux';
+import { SpinningCircles } from 'react-loading-icons';
+import Loader from '../loader/Loader';
 const modalOptions = {
     quantity: "quantity",
     variant: "variant"
@@ -25,8 +25,10 @@ const CartLineItem = ({ cartId, lineItem }) => {
     const [selectedVariant, setSelectedVariant] = useState(lineItem.merchandise.id)
     const [currentVariant, setCurrentVariant] = useState(null);
     const [type, setType] = useState(null);
-    const [isOpen, setIsOpen] = useState(false)
-    
+    const [isOpen, setIsOpen] = useState(false);
+    const getLoading = useSelector((state)=>state.cart.loading)
+    const [loading,setLoading] = useState(false);
+
     useEffect(() => {
         buildQuantityButtons()
         buildVariantButtons()
@@ -35,6 +37,10 @@ const CartLineItem = ({ cartId, lineItem }) => {
     useEffect(() => {
         getCurrentVariant()
     }, [selectedVariant])
+
+    useEffect(()=>{
+        console.log("getLoading",getLoading)
+    },[getLoading])
 
     const getCurrentVariant = () => {
         lineItem.merchandise.product.variants.edges.forEach((item) => {
@@ -45,12 +51,13 @@ const CartLineItem = ({ cartId, lineItem }) => {
     }
 
     const updateLineItemQuantity = async (value, type) => {
-
+        // setLoading(true)
         const linesObj = {
             id: `${lineItem.id}`,
             merchandiseId: type === modalOptions.variant ? value : selectedVariant,
             quantity: type === modalOptions.quantity ? value : selectedQuantity
         }
+        
         dispatch(updateCartLineThunk(
             {
                 cartId: cartId,
@@ -62,7 +69,10 @@ const CartLineItem = ({ cartId, lineItem }) => {
                 dispatch(fetchCartThunk(cartId)).unwrap().then((data) => {
                     // console.log(' fetched successfully:', data);
                 })
+                // setLoading(false)
             })
+
+           
     }
 
     const buildQuantityButtons = () => {
@@ -125,14 +135,21 @@ const CartLineItem = ({ cartId, lineItem }) => {
                 }
             )).unwrap()
             .then((result) => {
-                // console.log('Data fetched successfully:', result);
                 dispatch(fetchCartThunk(cartId)).unwrap().then((data) => {
                      console.log(' deleted successfully:', data);
                 })
             })
         
     }
-
+    if (getLoading) {
+        return <div>
+            <Loader>
+                <div className='loaderContainer'>
+                    <SpinningCircles stroke='#000' speed ="1" fill="#000" />
+                </div>
+            </Loader>
+        </div>
+    } 
     const { id, merchandise, quantity, cost } = lineItem;
     return (
         <>

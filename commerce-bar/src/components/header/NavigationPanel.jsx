@@ -145,7 +145,7 @@ const NavigationPanel = ({ data, collectionData }) => {
                         menuProduct.length > 0 && (
 
                             menuProduct.map((node, index) => (
-                                <Fragment>
+                                <Fragment key={index}>
                                     <ProductCard data={menuProduct} item={node.product} key={index} />
                                 </Fragment>
 

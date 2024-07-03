@@ -1,0 +1,11 @@
+.loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+.loaderContainer{
+    width: 43px;
+}
+.loaderContainer svg{
+    width: 100%;
+}

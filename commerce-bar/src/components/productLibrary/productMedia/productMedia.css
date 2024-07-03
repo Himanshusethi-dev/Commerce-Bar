@@ -22,7 +22,6 @@
     color: black;
     border: 1px solid black;
     padding: 8px;
-    z-index: 1000;
 }
 .mainImageTrack {
     display: flex;

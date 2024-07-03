@@ -5,7 +5,24 @@
     gap: 15px;
     margin: 20px 0;
 }
-
+.selectorButtons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+button.selectionSubmit {
+    background: black;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+}
 
 .selectorButtonsContainer button {
     background: white;
@@ -33,4 +50,12 @@
 .selectorButtonsContainer button.variantButton{
     width: 50px;
     height: 50px;
+}
+
+.selectorButtonsContainer button.variantButton {
+    max-width: 100px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+   font-size: 12px;
 }

@@ -33,13 +33,12 @@ ul.menuItems {
     opacity: 0;
     display: flex;
     visibility: hidden;
-   
-    /* gap: 5%; */
+    padding-top: 50px;
 }
 .menuItem.isActive .megaMenuPanel{
    opacity: 1;
    visibility: visible;
-   z-index: 1000;
+   z-index: 10000;
 }
 .insidePanelMenuItems {
     flex: 0 0 20%;
@@ -55,8 +54,8 @@ ul.menuItems {
 .menuShowcaseImage img {
     width: 100%;
     height: 100%;
+    max-height: 450px;
 }
-
 .menuLevelTwoTitle {
     text-align: left;
     width: 60%;
@@ -93,14 +92,29 @@ li.menuLevelTwoItem {
     /* display: grid; */
     /* grid-template-rows: repeat(3,1fr); */
     display: flex;
-    width: 100%;
+    width: 60%;
     justify-content: space-evenly;
     padding: 15px;
     flex: 0 0 60%;
     gap: 15px;
 }
 
+
+
 .menuShowcaseProducts .productCard{
-    flex: 0 0 40%;
+    flex: 0 0 36%;
+    min-height: 250px;
+  
+    
+}
+
+.menuShowcaseProducts .productImage{
+    max-height: 250px;
+    height: 100%;
+}
+
+.menuShowcaseProducts .productImage img{
+    width: 100%;
+    height: 100%;
 }
 

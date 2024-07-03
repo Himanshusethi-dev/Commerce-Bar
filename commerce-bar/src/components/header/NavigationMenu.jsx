@@ -5,11 +5,13 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NavigationPanel from './NavigationPanel'
 import MenuTitle from './MenuTile'
+import WrapperOverlay from '../modal/WrapperOverlay'
 
 const NavigationMenu = () => {
     const { authToken } = useSelector((state) => state.authProvider)
     const [menu, setMenu] = useState(null);
-
+    const [show,setShow] = useState(false);
+ 
     useEffect(() => {
         fetchNavigationMenu()
     }, [])
@@ -24,6 +26,10 @@ const NavigationMenu = () => {
         // console.log("menuFetched",data)
         setMenu(data?.menu)
     }
+    const updateShowState = (value)=>{
+        setShow(value);
+
+    }
     return (
         <nav className='headerMenu'>
 
@@ -34,9 +40,9 @@ const NavigationMenu = () => {
                         {
                             menu.items?.map((item, i) => (
 
-                                <MenuTitle   data={item} handle={item?.resource?.handle}  key={i}  />
+                                <MenuTitle updateShowState={updateShowState}  data={item} handle={item?.resource?.handle}  key={i}  />
                                     // i < 1 && (
-                                    //     <MenuTitle   data={item} handle={item?.resource?.handle}  key={i}  />
+                                    //     <MenuTitle  updateShowState={updateShowState}   data={item} handle={item?.resource?.handle}  key={i}  />
                                     // )
                                 
                                 
@@ -48,6 +54,14 @@ const NavigationMenu = () => {
 
                 )
             }
+
+            {
+                show && (
+                    <WrapperOverlay  show={show}/>
+                )
+            }
+
+         
 
 
         </nav>

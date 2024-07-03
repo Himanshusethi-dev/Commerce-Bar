@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom'
 import NavigationPanel from './NavigationPanel'
 import { getCollectionByHandle } from '../../Services/api'
 import { getMenuCollectionsData } from '../../Services/api'
+import WrapperOverlay from '../modal/WrapperOverlay'
 
-const MenuTitle = ({ data, handle }) => {
+const MenuTitle = ({ data, handle,updateShowState }) => {
 
 
     const [show, setShow] = useState(false)
     const [collData, setCollData] = useState(null);
     useEffect(() => {
         fetchCollectionForMenu()
+       
     }, [data])
 
     const fetchCollectionForMenu = async () => {
@@ -22,6 +24,7 @@ const MenuTitle = ({ data, handle }) => {
 
     const handleMegaMenu = (value) => {
         setShow(value)
+        updateShowState(value)
     }
     // onMouseLeave={()=>{setShow(false)}}  onMouseOver={()=>{setShow(true)}} 
 
@@ -47,12 +50,12 @@ const MenuTitle = ({ data, handle }) => {
                         handle={handle} >
                     </NavigationPanel>
 
+                
+
 
                 }
 
             </li>
-
-
         </>
     )
 }

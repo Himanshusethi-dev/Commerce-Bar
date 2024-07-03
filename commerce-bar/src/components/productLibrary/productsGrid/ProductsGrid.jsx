@@ -10,7 +10,7 @@ const ProductsGrid = ({ data, type, vID }) => {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
         arrows: true
     };
@@ -53,15 +53,37 @@ const ProductsGrid = ({ data, type, vID }) => {
                         <div className="productCarouselContainer">
                             <div className='productGridType'>{sectionType}</div>
 
-                            <div className='productCarousel'>
-                                <Slider {...settings}>
-                                    {
-                                        productList?.map((prod, index) => (
-                                            <ProductCard data={productList} item={prod} key={index} />
-                                        ))
-                                    }
-                                </Slider>
-                            </div>
+                            {
+
+                                productList.length > 4 ? (
+                                    <Slider {...settings}>
+
+                                        {
+                                            productList?.map((prod, index) => (
+                                                <ProductCard data={productList} item={prod} key={index} />
+                                            ))
+
+                                        }
+
+                                    </Slider>
+                                ) :
+
+                                    (
+
+                                        <div className="productsCardContainer">
+                                            {
+                                                productList?.map((prod, index) => (
+
+                                                    <ProductCard data={productList} item={prod} key={index} />
+                                                ))
+                                            }
+                                        </div>
+
+
+                                    )
+                            }
+
+
                         </div>
 
                     </>

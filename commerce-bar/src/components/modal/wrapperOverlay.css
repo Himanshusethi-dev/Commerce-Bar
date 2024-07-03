@@ -1,0 +1,17 @@
+.wrapperOverlay{
+    position: fixed;
+    background-color: #232323cc;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    display: none;
+  }
+
+  .wrapperOverlay.show{
+
+    display: block;
+    
+    
+  }

@@ -4,6 +4,7 @@ const initialState = {
     cartId : null,
     cartBuyer : null,
     cartData : {},
+    loading  : false
 }
 
 export const createCartThunk = createAsyncThunk(
@@ -33,10 +34,11 @@ export const  fetchCartThunk  = createAsyncThunk(
     'cart/fetchCart',
     async (cartId)=>{
         // console.log({buyerIdentity,cartId} = args)
+        console.log("cartId",cartId)
       const data = await getCartByID(cartId)
        const cartActionPayload =  data.data.data.cart
     //    console.log(cartActionPayload,"slicedCart")
-         console.log(data.data.data.cart)
+         console.log("cartActionPayload",data)
          return cartActionPayload;
     }
 
@@ -81,14 +83,20 @@ export const cartSlice = createSlice({
         }).addCase(updateBuyerIDThunk.fulfilled,(state,action)=>{
 
             state.cartBuyer = action.payload.id
+        }).addCase(fetchCartThunk.pending,(state,action)=>{
+            state.loading = true
         }).addCase(fetchCartThunk.fulfilled,(state,action)=>{
             state.cartData = {...action.payload} 
+            state.loading = false
         })
         .addCase(updateCartLineThunk.fulfilled,(state,action)=>{
             // state.cartId = action.payload.id 
             // return action.payload;
         }).addCase(deleteCartLineThunk.fulfilled,(state,action)=>{
-
+            state.loading = false;
+        })
+        .addCase(deleteCartLineThunk.pending,(state,action)=>{
+                state.loading = true;
         })
     }
 })

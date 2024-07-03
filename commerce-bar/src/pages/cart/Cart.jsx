@@ -14,7 +14,7 @@ const Cart = () => {
   // const[cartData,setCartData] = useState(null);
   useEffect(() => {
 
-    const cartDataItems = cartData.lines.edges;
+    const cartDataItems = cartData?.lines?.edges;
 
     setCartItems(cartDataItems);
 
@@ -31,7 +31,7 @@ const Cart = () => {
     <div className="cartPage container">
       <div className="cartItems">
         {
-          cartItems.map((item) => {
+          cartItems?.map((item) => {
             return <Fragment key={item.node.merchandise.id}>
               <CartLineItem cartId={cartId} lineItem={item.node} />
             </Fragment>
@@ -49,7 +49,7 @@ const Cart = () => {
           Number Of Items : <span> {cartData.totalQuantity} Items  </span>
           </div>
           <div className="totalPrice">
-          Total Amount : <span>  &#8377; { Math.ceil(cartData.cost.totalAmount.amount)} </span>
+          Total Amount : <span>  &#8377; { Math.ceil(cartData.cost?.totalAmount.amount)} </span>
           </div>
 
           {/* <Link to={`${cartData.checkoutUrl}`} >Checkout </Link> */}

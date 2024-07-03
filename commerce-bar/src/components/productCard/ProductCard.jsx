@@ -23,6 +23,7 @@ const ProductCard = ({ item, data, index }) => {
     }
 
     const navigateHandle = (handle, idString) => {
+        window.scrollTo(0,0);
         navigate(`/products/${handle}`)
     }
 
@@ -33,9 +34,9 @@ const ProductCard = ({ item, data, index }) => {
                 {
                     item.images?.edges.length > 0 ? (
 
-                        <img width='250' src={`${item.images?.edges[0].node.url}`} alt="" />
+                        <img  src={`${item.images?.edges[0].node.url}`} alt="" />
                     ) : (
-                        <img width='250' src={placeholderImage} alt="" />
+                        <img  src={placeholderImage} alt="" />
 
                     )
                 }
