@@ -56,3 +56,9 @@
 .closeModalButton button:focus {
     outline: none;
 }
+
+@media (max-width : 767px){
+    .modalBox {
+        width: 80%;
+    }
+}

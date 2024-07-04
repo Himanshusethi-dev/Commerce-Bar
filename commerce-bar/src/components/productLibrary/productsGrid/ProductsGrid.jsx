@@ -12,7 +12,17 @@ const ProductsGrid = ({ data, type, vID }) => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        arrows: true
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 767,
+                settings: {
+                  slidesToShow: 1.5,
+                  slidesToScroll: 1,
+                 
+                }
+              },
+        ]
     };
 
     const [productList, setProductList] = useState([])

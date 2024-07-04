@@ -18,7 +18,7 @@
     /* min-height: 450px; */
 }
 .productCard img{
- max-height: 300px;
+ max-height: ;
 }
 .productCarouselContainer .slick-slide img{
    max-height: 300px;
@@ -39,6 +39,7 @@
 }
 .productImage img{
     width: 100%;
+    height: 100%;
 }
 .collectionProductList{
     margin-top: 20px;
@@ -89,3 +90,11 @@
 
     margin-right: 10px;
 } */
+
+
+@media (max-width:1200px){
+    .productImage {
+        max-height: 200px;
+        height: 100%;
+    }
+}

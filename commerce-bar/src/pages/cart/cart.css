@@ -14,11 +14,17 @@
     box-shadow: 0 1px 6px #0003, 0 0 0 #2d94e5f0;
     position: relative;
     gap: 20px;
+    background: #dbc6e1;
+    padding: 10px;
 }
-
+.cartItemInfo{
+    flex: 0 0 70%;
+}
 .cartItemMedia {
-    flex: 0 0 180px;
+    flex: 0 0 30%;
     width: 100%;
+    margin: auto;
+   
 }
 .cartItemImage {
     overflow: hidden;
@@ -27,6 +33,9 @@
 }
 .cartItemImage img {
     width: 100%;
+    /* max-height: 200px;
+    height: 100%; */
+    border-radius: 9px;
 }
 
 .productVendor {
@@ -116,15 +125,18 @@ button.variantChangeButton {
     font-weight: 500;
 }
 
-
-.cartRightPanel {
-    text-align: left;
-}
-
 .cartRightPanel {
     text-align: left;
     box-shadow: 0 1px 6px #0003, 0 0 0 #2d94e5f0;
     padding: 10px;
     height: max-content;
-    width: 100%;
+    background-color: #dbc6e1;
+    flex: 0 0 40%;
+}
+
+
+@media (max-width : 767px){
+    .cartPage {
+        flex-direction: column-reverse;
+    }
 }
