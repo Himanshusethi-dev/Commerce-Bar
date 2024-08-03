@@ -17,7 +17,7 @@ const NavigationMenu = () => {
     }, [])
 
     useEffect(() => {
-        console.log("menuData", menu)
+        // console.log("menuData", menu)
     }, [menu])
 
     const fetchNavigationMenu = async () => {
