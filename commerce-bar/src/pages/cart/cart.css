@@ -16,6 +16,7 @@
     gap: 20px;
     background: #dbc6e1;
     padding: 10px;
+    max-height: 200px;
 }
 .cartItemInfo{
     flex: 0 0 70%;
@@ -24,18 +25,21 @@
     flex: 0 0 30%;
     width: 100%;
     margin: auto;
+    height: 100%;
    
 }
 .cartItemImage {
     overflow: hidden;
     margin: auto;
     cursor: pointer;
+    height: 100%;
 }
 .cartItemImage img {
     width: 100%;
     /* max-height: 200px;
     height: 100%; */
     border-radius: 9px;
+    height: 100%;
 }
 
 .productVendor {
