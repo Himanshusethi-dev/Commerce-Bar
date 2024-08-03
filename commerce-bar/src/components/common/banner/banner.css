@@ -1,0 +1,8 @@
+.bannerImage{
+    height: 500px;
+    overflow: hidden;
+}
+.bannerImage img{
+    width: 100%;
+    height: 100%;
+} 

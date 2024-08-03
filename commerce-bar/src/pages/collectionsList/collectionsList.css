@@ -1,7 +1,16 @@
 .collectionsList {
-    display: flex;
+    /* display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center; */
+
+
+    display: grid;
+    grid-template-columns: repeat(5,20%);
+    row-gap: 10px;
+    column-gap: 10px;
+    
+
 }
 .coll-card {
     overflow: hidden;
@@ -45,10 +54,27 @@
     object-fit: fill;
 }
 
+
+
 @media (max-width : 767px){
     .collectionsList {
         display: grid;
+        grid-template-columns: repeat(2,50%);
+        justify-content: space-between;
+    }
+}
+@media (max-width : 420px){
+    .collectionsList {
+        display: grid;
         grid-template-columns: repeat(1,100%);
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 768px ) and  (max-width : 1200px){
+    .collectionsList {
+        display: grid;
+        grid-template-columns: repeat(3,33%);
         justify-content: space-between;
     }
 }
