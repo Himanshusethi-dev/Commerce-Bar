@@ -7,8 +7,11 @@ import { getCartByID } from '../../Services/api'
 import { fetchCartThunk } from '../../store/slices/cartSlice'
 import CartLineItem from '../../components/cart/CartLineItem'
 import Modal from '../../components/modal/Modal'
+import CartShimmer from '../../components/cart/CartShimmer'
 const Cart = () => {
   const dispatch = useDispatch();
+  const getLoading = useSelector((state) => state.cart.loading)
+
   const { cartId, cartBuyer, cartData } = useSelector((state) => state.cart)
   const [cartItems, setCartItems] = useState([]);
   // const[cartData,setCartData] = useState(null);
@@ -31,30 +34,52 @@ const Cart = () => {
     <div className="cartPage container">
       <div className="cartItems">
         {
-          cartItems?.map((item) => {
-            return <Fragment key={item.node.merchandise.id}>
-              <CartLineItem cartId={cartId} lineItem={item.node} />
-            </Fragment>
-          })
+
+          !getLoading ? (
+            cartItems?.map((item) => {
+              return <Fragment key={item.node.merchandise.id}>
+                <CartLineItem cartId={cartId} lineItem={item.node} />
+              </Fragment>
+            })
+
+          ) :
+            (
+              <CartShimmer side={"left"} />
+
+            )
+
+
         }
 
       </div>
 
-      <div className="cartRightPanel">
-        <div className="cartOrdersPanel">
-          <div className="cartOrderHeading">
-            Order Summary
-          </div>
-          <div className="totalItems">
-          Number Of Items : <span> {cartData.totalQuantity} Items  </span>
-          </div>
-          <div className="totalPrice">
-          Total Amount : <span>  &#8377; { Math.ceil(cartData.cost?.totalAmount.amount)} </span>
+
+      {
+
+        getLoading ? (
+
+          <CartShimmer side={"right"} />
+        ) : (
+          <div className="cartRightPanel">
+            <div className="cartOrdersPanel">
+              <div className="cartOrderHeading">
+                Order Summary
+              </div>
+              <div className="totalItems">
+                Number Of Items : <span> {cartData.totalQuantity} Items  </span>
+              </div>
+              <div className="totalPrice">
+                Total Amount : <span>  &#8377; {Math.ceil(cartData.cost?.totalAmount.amount)} </span>
+              </div>
+
+              {/* <Link to={`${cartData.checkoutUrl}`} >Checkout </Link> */}
+            </div>
           </div>
 
-          {/* <Link to={`${cartData.checkoutUrl}`} >Checkout </Link> */}
-        </div>
-      </div>
+        )
+      }
+
+
 
 
     </div>

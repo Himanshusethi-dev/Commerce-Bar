@@ -1,0 +1,43 @@
+.cartShimmerItem div{
+    border-radius: 10px;
+}
+.cartShimmerItem {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.cartShimmerBody{
+    height: 185px;
+    background: transparent;
+    display: flex;
+    gap: 3%;
+    /* width: 100%; */
+}
+.cartShimmerMedia{
+    height: 185px;
+     flex: 0 0 27%;
+    background: linear-gradient(45deg, #a615d13d, transparent);
+}
+.cartShimmerInfo{
+    height: 185px;
+    flex: 0 0 70%;
+    /* background: linear-gradient(to left, #a615d13d, transparent); */
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cartShimmerInfoContent{
+    height: 30px;
+    width: 80%;
+    background: linear-gradient(to left, #a615d13d, transparent);
+}
+.cartShimmerHead{
+    height: 85px;
+    background: linear-gradient(45deg, #a615d13d, transparent);
+}
+
+.cartShimmerItemRightPanel{
+    height: 45px;
+    background: linear-gradient(45deg, #a615d13d, transparent);
+}

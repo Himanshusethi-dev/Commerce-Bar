@@ -6,6 +6,7 @@ ul.menuItems {
     background: white;
     align-items: center;
     position: relative;
+    border-top: 1px solid #dbdbdb;
 }
 .menuItem {
     display: flex;
@@ -34,6 +35,7 @@ ul.menuItems {
     display: flex;
     visibility: hidden;
     padding-top: 50px;
+    border-top: 1px solid #dbdbdb;
 }
 .menuItem.isActive .megaMenuPanel{
    opacity: 1;
@@ -118,3 +120,8 @@ li.menuLevelTwoItem {
     height: 100%;
 }
 
+@media (max-width:767px){
+    .headerMenu{
+        display: none;
+    }
+}

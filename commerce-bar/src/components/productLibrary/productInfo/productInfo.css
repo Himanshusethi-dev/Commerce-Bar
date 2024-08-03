@@ -47,3 +47,18 @@ span.comparePrice {
     border-radius: 6px;
     font-size: 17px;
 }
+
+@media (max-width : 767px){
+    .productMain{
+        flex-direction: column;
+        width: 100%;
+    }
+    .productInfo {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .productPage .mediaContainer{
+        flex: 0 0 100%;
+        width: 100%;
+    }
+}
