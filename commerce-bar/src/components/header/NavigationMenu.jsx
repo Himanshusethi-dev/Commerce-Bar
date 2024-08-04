@@ -6,26 +6,17 @@ import { Link } from 'react-router-dom'
 import NavigationPanel from './NavigationPanel'
 import MenuTitle from './MenuTile'
 import WrapperOverlay from '../modal/WrapperOverlay'
+import useNavigationFetcher from '../../hooks/useNavigationFetcher'
 
 const NavigationMenu = () => {
+    
     const { authToken } = useSelector((state) => state.authProvider)
-    const [menu, setMenu] = useState(null);
+    // const [menu, setMenu] = useState(null);
     const [show,setShow] = useState(false);
- 
-    useEffect(() => {
-        fetchNavigationMenu()
-    }, [])
+    const menu = useNavigationFetcher('header-menu');
+  
 
-    useEffect(() => {
-        console.log("menuData", menu)
-    }, [menu])
 
-    const fetchNavigationMenu = async () => {
-
-        const { data: { data } } = await getMenuByHandle(`header-menu`)
-        // console.log("menuFetched",data)
-        setMenu(data?.menu)
-    }
     const updateShowState = (value)=>{
         setShow(value);
 

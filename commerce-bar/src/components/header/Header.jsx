@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <div className='header'>
             <div className="headerBox container">      
-                <Link to={'/collections-list'}>  Collections </Link>
+                {/* <Link to={'/collections-list'}>  Collections </Link> */}
                 {
                     authToken ? (
                         <Link to={'/account/profile'} > Account</Link>

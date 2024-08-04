@@ -7,15 +7,11 @@ import banner3Mob from '../../assets/banner3Mob.webp'
 const Home = () => {
   return (
     <div className='container'>
-
       <div className="home">
         <Banner  img={banner3} mobImg={banner3Mob} />
         <CollectionsList />
       </div>
-
-      
     </div>
-    
   )
 }
 

@@ -16,7 +16,7 @@ const CollectionsList = () => {
     }, [])
 
     useEffect(() => {
-        console.log(data)
+        // console.log(data)
     }, [data])
 
     const fetchAllCollections = async () => {

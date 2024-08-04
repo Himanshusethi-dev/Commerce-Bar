@@ -11,7 +11,7 @@ export const createCartThunk = createAsyncThunk(
     'cart/createCart',
     async (cartInput,thunk)=>{
         const data = await generateCart(cartInput)
-         console.log(data.data.data.cartCreate.cart.id)
+        //  console.log(data.data.data.cartCreate.cart.id)
          return data.data.data.cartCreate.cart
     }
 
@@ -34,11 +34,11 @@ export const  fetchCartThunk  = createAsyncThunk(
     'cart/fetchCart',
     async (cartId)=>{
         // console.log({buyerIdentity,cartId} = args)
-        console.log("cartId",cartId)
+        // console.log("cartId",cartId)
       const data = await getCartByID(cartId)
        const cartActionPayload =  data.data.data.cart
     //    console.log(cartActionPayload,"slicedCart")
-         console.log("cartActionPayload",data)
+        //  console.log("cartActionPayload",data)
          return cartActionPayload;
     }
 

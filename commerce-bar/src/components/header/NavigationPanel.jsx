@@ -26,7 +26,7 @@ const NavigationPanel = ({ data, collectionData }) => {
 
 
     useEffect(() => {
-        console.log("menuShowcaseData", menuShowcaseData)
+        // console.log("menuShowcaseData", menuShowcaseData)
     }, [menuShowcaseData])
 
     const getMetaObjectData = async () => {

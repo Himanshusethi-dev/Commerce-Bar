@@ -23,7 +23,7 @@ const Banner = ({ img, mobImg }) => {
     window.addEventListener('resize', checkWindowSize)
   }, [])
   useEffect(()=>{
-      console.log("view",view)
+      // console.log("view",view)
   },[view])
   return (
     <div className='bannerImage'>
