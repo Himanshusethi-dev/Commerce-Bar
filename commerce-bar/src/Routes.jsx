@@ -9,6 +9,7 @@ import Login from "./pages/Account/Login";
 import Register from "./pages/Account/Register";
 import Customer from "./pages/Account/Customer";
 import Cart from "./pages/cart/Cart";
+import ProductsListingPage from "./pages/productsListingPage/ProductsListingPage";
 
 export const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "collections/:handle",
-                        element: <ProductList />
+                        element: <ProductsListingPage />
                     },
                     {
                         path: "products/:handle",

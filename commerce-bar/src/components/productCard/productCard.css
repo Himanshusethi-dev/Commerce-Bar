@@ -17,11 +17,9 @@
     cursor: pointer;
     /* min-height: 450px; */
 }
-.productCard img{
- max-height: ;
-}
+
 .productCarouselContainer .slick-slide img{
-   max-height: 300px;
+   max-height: 60%;
   }
 
 .productsCardContainer {
@@ -34,7 +32,7 @@
     margin: auto;
 }   
 .productImage {
-    max-height: 300px;
+    max-height: 60%;
     height: 100%;
 }
 .productImage img{
@@ -95,7 +93,7 @@
 
 @media (max-width:1200px){
     .productImage {
-        max-height: 200px;
+        max-height: 60%;
         height: 100%;
     }
 }

@@ -1,0 +1,49 @@
+.progressBar{
+   
+    height: 10px;
+    margin: 10px 0;
+    position: relative;
+    width: 150px;
+    background-color: rgb(172, 168, 168);
+    border-radius: 10px;
+}
+.bar{
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-width: 150px;
+}
+.rangeInputs{
+    position: relative;
+    height: 10px;
+    width: 150px;
+}
+.rangeInputs input{
+    position: absolute;
+    top: -25px;
+    appearance: none;
+    width: 100%;
+    pointer-events: none;
+    background-color: transparent;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+.rangeInputs input::-webkit-slider-thumb{
+    width: 15px;
+    height: 15px;
+    pointer-events: auto;
+    background-color: navy;
+    appearance: none;
+   
+}
+/* 
+.rangeInputs input.minRange::-webkit-slider-thumb{
+    left: 0;
+}
+.rangeInputs input.minRange::-webkit-slider-thumb{
+    right: 0;
+} */

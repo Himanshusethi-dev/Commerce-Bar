@@ -17,12 +17,12 @@ const Footer = () => {
   }, [footer])
 
   useEffect(() => {
-    console.log("footerOptions", footerOptions);
+    // console.log("footerOptions", footerOptions);
   }, [footerOptions])
 
   return (
     <>
-      <div className="container">
+      <div className="footer container">
         <Box component="div" justifyContent={'center'}  sx={{display:'flex',borderTop: 1,paddingTop:'10px'}} >
           {
             footerOptions && (

@@ -9,41 +9,31 @@ import WrapperOverlay from '../modal/WrapperOverlay'
 import useNavigationFetcher from '../../hooks/useNavigationFetcher'
 
 const NavigationMenu = () => {
-    
     const { authToken } = useSelector((state) => state.authProvider)
     // const [menu, setMenu] = useState(null);
     const [show,setShow] = useState(false);
-    const menu = useNavigationFetcher('header-menu');
+  const menu = useNavigationFetcher('header-menu');
   
-
-
     const updateShowState = (value)=>{
         setShow(value);
-
     }
     return (
         <nav className='headerMenu'>
-
             {
+                 menu && (
                 menu?.items.length > 0 && (
-
                     <ul className="menuItems">
                         {
                             menu.items?.map((item, i) => (
-
                                 <MenuTitle updateShowState={updateShowState}  data={item} handle={item?.resource?.handle}  key={i}  />
                                     // i < 1 && (
                                     //     <MenuTitle  updateShowState={updateShowState}   data={item} handle={item?.resource?.handle}  key={i}  />
-                                    // )
-                                
-                                
+                                    // )                           
                             ))
                         }
-
                     </ul>
-
-
                 )
+            )
             }
 
             {
@@ -51,10 +41,6 @@ const NavigationMenu = () => {
                     <WrapperOverlay  show={show}/>
                 )
             }
-
-         
-
-
         </nav>
     )
 }
