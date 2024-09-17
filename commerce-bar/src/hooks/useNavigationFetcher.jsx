@@ -6,7 +6,7 @@ const useNavigationFetcher = (handle) => {
     const fetchNavigationMenu = async () => {
 
       const { data: { data } } = await getMenuByHandle(`${handle}`)
-      console.log("menuFetched",data)
+      // console.log("menuFetched",data)
       setMenu(data?.menu)
     }
     fetchNavigationMenu()

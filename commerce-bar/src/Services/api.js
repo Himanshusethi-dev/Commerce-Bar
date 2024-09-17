@@ -57,6 +57,84 @@ export const getCollectionsQuery = async () => {
   return response.data.data.collections.edges;
 };
 
+export const productsListByHandle = async (handle,filters=JSON.stringify([])) => {
+  const getProductsListQuery = `
+  
+    query collectionByHandle($handle: String!) {
+  collection(handle: $handle) {
+    descriptionHtml
+    handle
+    title
+    id
+    image {
+      url
+    }
+    products(first: 20,filters:${filters}) {
+      edges {
+        node {
+          handle
+          title
+          images(first: 2) {
+            edges {
+              node {
+                url
+              }
+            }
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+            maxVariantPrice {
+              amount
+            }
+          }
+          variants(first: 10) {
+            edges {
+              node {
+                price {
+                  amount
+                }
+                compareAtPrice {
+                  amount
+                }
+                id
+                title
+              }
+            }
+          }
+        }
+      }
+      filters {
+        id
+        label
+        type
+        values {
+          count
+          label
+          input
+        }
+      }
+    }
+  }
+}
+  `;
+
+  try {
+    const response = await shopifyStorefront.post("", {
+      query: getProductsListQuery,
+      variables: { handle: handle,
+        filters : filters
+       },
+    });
+    // console.log(response);
+    return response;
+  } catch (error) {}
+
+
+
+}
+
 export const getCollectionByHandle = async (
   handle,
   sortParam = "MANUAL",

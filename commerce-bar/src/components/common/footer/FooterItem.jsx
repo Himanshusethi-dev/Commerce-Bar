@@ -6,7 +6,7 @@ import './footer.css'
 const FooterItem = ({ data }) => {
     const { items } = data;
     useEffect(() => {
-        console.log(items)
+        // console.log(items)
     }, [])
     return (
         <>

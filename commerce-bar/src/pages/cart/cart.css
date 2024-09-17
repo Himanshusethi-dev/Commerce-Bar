@@ -2,6 +2,7 @@
     padding-top: 50px;
     display: flex;
     gap: 20px;
+    min-height: 500px;
 }
 .cartItems {
     display: flex;
