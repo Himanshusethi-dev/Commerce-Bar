@@ -14,5 +14,6 @@
     border-top: 1px solid rgb(206 171 171 / 25%);
 }
 .productCarouselContainer {
-    margin: 55px 0;
+    margin: 55px auto;
+    width: 90%; 
 }

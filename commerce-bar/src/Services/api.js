@@ -417,7 +417,7 @@ export const logInCustomer = async (input) => {
         },
       },
     });
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (error) {}
 };
@@ -472,7 +472,7 @@ export const fetchCustomer = async (token) => {
         customerAccessToken: token,
       },
     });
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (error) {}
 };
@@ -507,7 +507,10 @@ export const createCustomer = async (input) => {
         },
       },
     });
-    console.log(response);
+    // console.log(response);
+    // if(response.customerUserErrors) {
+    //   throw new Error(response.)
+    // }
     return response;
   } catch (error) {}
 };
@@ -544,7 +547,7 @@ export const generateCart = async (input) => {
 };
 
 export const updateCartBuyerIdentity = async (buyerIdentity, cartId) => {
-  console.log(buyerIdentity, cartId);
+  // console.log(buyerIdentity, cartId);
   const cartBuyerIDMutation = `
       mutation cartBuyerIdentityUpdate($buyerIdentity: CartBuyerIdentityInput!, $cartId: ID!) {
         cartBuyerIdentityUpdate(buyerIdentity: $buyerIdentity, cartId: $cartId) {
@@ -703,8 +706,6 @@ export const addToCart = async (cartID, lines) => {
 };
 
 export const updateCartLine = async (cartID, lines) => {
-  console.log("ho rha h ");
-
   const cartLineUpdateMutation = `
   
         mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
@@ -729,7 +730,7 @@ export const updateCartLine = async (cartID, lines) => {
         lines: [lines],
       },
     });
-    console.log(response, "updateCart");
+    // console.log(response, "updateCart");
     return response;
   } catch (error) {}
 };

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { userLogout } from '../../store/slices/authSlice';
 import { fetchCustomer } from '../../Services/api';
 import useCustomerData from '../../hooks/useCustomerData';
+import './account.css'
 
 const Customer = () => {
     const dispatch = useDispatch();
@@ -21,31 +22,24 @@ const Customer = () => {
 
     useEffect(() => {
     }, [])
-    const { isCustomer,customerData} =  useCustomerData();
+    const { isCustomer, customerData } = useCustomerData();
 
     return (
-        <>
-            <div>Customer</div>
-            {
-                !!authToken && (
+        <div className="container">
+            <div className='customerPage'>
+               
+                {
+                    !!authToken && (
 
-                    <button className="logOut" onClick={logOutHandler}>
-                        Log out
-                    </button>
-                )
-            }
+                        <button className="logOut" onClick={logOutHandler}>
+                            Log out
+                        </button>
+                    )
+                }
 
-            {
-                isCustomer && (
 
-                    <div>
-                        zvcvcx
-
-                    </div>
-                )
-            }
-
-        </>
+            </div>
+        </div>
 
     )
 }

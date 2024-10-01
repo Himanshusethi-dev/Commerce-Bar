@@ -1,6 +1,7 @@
 .bannerImage{
     height: 500px;
     overflow: hidden;
+    margin-bottom: 50px;
 }
 .bannerImage img{
     width: 100%;

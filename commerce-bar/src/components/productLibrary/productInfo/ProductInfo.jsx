@@ -33,42 +33,17 @@ const ProductInfo = ({ data, vID, updateVariantID }) => {
         dispatch(fetchCartThunk(cart.cartId))
         setLoading(false)
         navigate(`/cart`)
-        console.log("Resp", resp)
-
     }
-
-    useEffect(() => {
-        console.log(cartLines)
-        console.log(createMarkup(data.descriptionHtml))
-    }, [cartLines])
-
-    useEffect(() => {
-
-        console.log("vod", vID)
-    }, [vID])
-
-    // const createCustomerTrigger = async () => {
-    //     const data = await createCustomer();
-    // }
-
-    if (loading) {
-        return <div>
-            <Loader>
-                <div className='loaderContainer'>
-                    <SpinningCircles stroke='#000' speed ="1" fill="#000" />
-                </div>
-            </Loader>
-        </div>
-    } 
 
 
         return (
             <>
                 <div className="productInfo">
+                      <Loader loading={loading}   />
                     <div className="prodVendor">
                         {data.vendor}
                     </div>
-                    <div className="productTitle">
+                    <div className="productPageTitle">
                         {data.title}
                     </div>
                     <Price data={data} vID={vID} />

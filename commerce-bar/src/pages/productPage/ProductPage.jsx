@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect,useRef, Fragment } from 'react'
 import "./productPage.css";
 import { json, useParams,useSearchParams  } from 'react-router-dom'
 import { getProductByHandle } from '../../Services/api';
@@ -40,7 +40,7 @@ const ProductPage = () => {
 
     useEffect(()=>{
       let initialVariantID =   getInitialVariantID()
-        console.log(prodData,"prodData")
+        // console.log(prodData,"prodData")
         setVariantId(initialVariantID)
     },[prodData])
 
@@ -55,7 +55,7 @@ const ProductPage = () => {
                                 <MediaSlider  data={prodData} vID = {variantId} showThumbNails={true} />
                                 <ProductInfo  data={prodData} vID = {variantId} updateVariantID={updateVariantID} />
                             </div>
-                            <ProductsGrid vID = {variantId}  data={prodData} type={'Related Products'} /> 
+                            <ProductsGrid  handle={handle} vID = {variantId}  data={prodData} type={'Related Products'} /> 
                       </div>
                       
 

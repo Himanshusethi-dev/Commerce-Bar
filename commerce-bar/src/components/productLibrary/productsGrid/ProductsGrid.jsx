@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import { getRecommendedProducts } from '../../../Services/api';
 import ProductCard from '../../productCard/ProductCard';
 import Slider from "react-slick";
 import "./productsGrid.css"
 
-const ProductsGrid = ({ data, type, vID }) => {
+const ProductsGrid = ({ data, type, vID,handle }) => {
 
     const settings = {
         dots: false,
@@ -14,20 +14,37 @@ const ProductsGrid = ({ data, type, vID }) => {
         slidesToScroll: 1,
         arrows: true,
         responsive: [
-            {
-                breakpoint: 767,
-                settings: {
-                  slidesToShow: 1.5,
-                  slidesToScroll: 1,
-                 
-                }
-              },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1.5,
+                        slidesToScroll: 1,
+                    
+                    }
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 2.5,
+                        slidesToScroll: 1,
+                    
+                    }
+                },
+                {
+                    breakpoint: 1330,
+                    settings: {
+                        slidesToShow: 3.5,
+                        slidesToScroll: 1,
+                    
+                    }
+                },
+
         ]
     };
 
     const [productList, setProductList] = useState([])
     const [sectionType, setSectionType] = useState('Related Products')
-
+    const sliderRef = useRef();
     const fetchRecommendedProducts = async () => {
         // console.log(type)
 
@@ -50,6 +67,12 @@ const ProductsGrid = ({ data, type, vID }) => {
 
     }, [vID])
 
+    useEffect(()=>{
+       if(sliderRef.current){
+        sliderRef.current.slickGoTo(0);
+       }
+    },[handle])
+
     useEffect(() => {
 
         // console.log(productList)
@@ -66,7 +89,7 @@ const ProductsGrid = ({ data, type, vID }) => {
                             {
 
                                 productList.length > 4 ? (
-                                    <Slider {...settings}>
+                                    <Slider ref={sliderRef} {...settings}>
 
                                         {
                                             productList?.map((prod, index) => (

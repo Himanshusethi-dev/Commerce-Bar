@@ -6,6 +6,7 @@ ul.menuItems {
     align-items: center;
     position: relative;
     border-top: 1px solid #dbdbdb;
+    margin-top: 0;
 }
 .menuItem {
     display: flex;

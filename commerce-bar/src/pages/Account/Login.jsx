@@ -47,13 +47,12 @@ const Login = () => {
             // const resp = await logInCustomer(creds);
 
             const resp = dispatch(userLogin(creds))
-            console.log(resp)
             setEmail("")
             setPassword("")
             setSuccess(true)
             setLoginMessage(message)
         } catch (error) {
-            console.log("error", error)
+            // console.log("error", error)
         }
 
     }

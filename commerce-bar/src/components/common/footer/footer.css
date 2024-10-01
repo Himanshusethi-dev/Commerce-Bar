@@ -1,7 +1,9 @@
 .footer {
-    position: relative;
+    position: sticky;
     bottom: 0;
-    width: 100%;
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
 }
 .footerListItem a{
 

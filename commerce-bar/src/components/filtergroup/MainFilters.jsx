@@ -50,7 +50,7 @@ const MainFilters = ({ data, getAllSelectedFilters }) => {
         let validArr = selectedFilters;
         const filterValue = JSON.parse(input);
         let toAddFilter = true;
-        console.log(validArr)
+        // console.log(validArr)
         toAddFilter = removeFilter(validArr, input, toAddFilter, filterValue)
         if (toAddFilter) {
             validArr.push(filterValue);

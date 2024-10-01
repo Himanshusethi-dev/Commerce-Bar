@@ -22,7 +22,8 @@ const Footer = () => {
 
   return (
     <>
-      <div className="footer container">
+     <div className="container">
+     <div className="footer">
         <Box component="div" justifyContent={'center'}  sx={{display:'flex',borderTop: 1,paddingTop:'10px'}} >
           {
             footerOptions && (
@@ -38,6 +39,7 @@ const Footer = () => {
           }
         </Box>
       </div>
+     </div>
     </>
   )
 }

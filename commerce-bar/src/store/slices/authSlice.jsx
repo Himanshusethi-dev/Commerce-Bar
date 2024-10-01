@@ -13,7 +13,7 @@ export const userLogin = createAsyncThunk(
       if(response.data.data?.customerAccessTokenCreate.customerAccessToken){
         return response.data.data?.customerAccessTokenCreate.customerAccessToken
       }else{
-        console.log(response.data.data?.customerAccessTokenCreate?.customerUserErrors[0]?.message)
+        // console.log(response.data.data?.customerAccessTokenCreate?.customerUserErrors[0]?.message)
         return response.data.data?.customerAccessTokenCreate?.customerUserErrors[0]?.message
       }
        
@@ -23,7 +23,7 @@ export const userLogin = createAsyncThunk(
     'logout',
    async (token) => {
      const response = await logOutCustomer(token)
-     console.log(response);
+    //  console.log(response);
      return response;
    },
  )
@@ -52,7 +52,7 @@ export  const authSlice = createSlice({
             // },3000)
         } 
         
-        console.log(action.payload)
+        // console.log(action.payload)
       }).addCase(userLogout.fulfilled,(state,action)=>{
         state.authToken = null;
         state.loggedIn = false;

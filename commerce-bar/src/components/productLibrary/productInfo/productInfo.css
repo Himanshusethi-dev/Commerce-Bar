@@ -60,5 +60,6 @@ span.comparePrice {
     .productPage .mediaContainer{
         flex: 0 0 100%;
         width: 100%;
+        justify-content: center;
     }
 }

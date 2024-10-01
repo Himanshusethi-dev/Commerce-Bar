@@ -104,3 +104,17 @@
 .filterTitle label {
     margin-right: 14px;
 } */
+
+
+@media (max-width:1023px){
+     .sidebar.open .filters {
+        height: 100%;
+        margin-top: 0;
+        max-width: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+    .sidebar.open .filters .filterGroup{
+        margin-top: 50px;
+    }
+}
