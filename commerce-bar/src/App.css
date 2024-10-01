@@ -6,7 +6,7 @@
 .container{
   max-width: 1560px;
   margin: 0 auto;
-  padding: 2rem;
+  padding:  0 2rem;
   text-align: center;
 }
 .logo {
@@ -21,7 +21,26 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 11;
+}
+button.slick-arrow:before {
+  opacity: 1;
+  border: none;
+  padding: 0;
+  outline: none;
+  background: transparent;
+  color: black;
+  padding: 4px;
+  font-size: 22px;
+  font-weight: 100;
+}
 .atcButton:disabled{
   cursor: no-drop;   
 }

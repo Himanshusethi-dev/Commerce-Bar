@@ -47,9 +47,9 @@ export const  fetchCartThunk  = createAsyncThunk(
 export const updateCartLineThunk = createAsyncThunk(
     'cart/updateCart',
     async (args)=>{
-        console.log("rereder",args.cartId,args.lines)
+        // console.log("rereder",args.cartId,args.lines)
          const data = await updateCartLine(args.cartId,args.lines)
-         console.log("cartUpdateRedux",data)
+        //  console.log("cartUpdateRedux",data)
            return data
     }
 
@@ -59,9 +59,9 @@ export const deleteCartLineThunk = createAsyncThunk(
     'cart/deleteCartLine',
     async (args)=>{
         // console.log("rereder",args.cartId,args.lines)
-        console.log("rereder",args.cartId,args.lineIds)
+        // console.log("rereder",args.cartId,args.lineIds)
          const data = await deleteCartLine(args.cartId,args.lineIds)
-         console.log("cartUpdateRedux",data)
+        //  console.log("cartUpdateRedux",data)
            return data
     }
 

@@ -2,12 +2,34 @@
     min-height: 600px;
     display: flex;
     gap: 20px;
+    justify-content: center;
 }
-
+.productsListing {
+    padding-top: 20px;
+}
 .filters {
     flex: 0 0 20%;
     background: white;
     border: 1px solid #fbe7e7;
     padding: 10px;
     margin-top: 44px;
+}
+
+.utilities {
+    text-align: left;
+}
+.mobFilterCloseButton {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    right: 0;
+    position: absolute;
+    right: 10px;
 }

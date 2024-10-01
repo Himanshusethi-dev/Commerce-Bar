@@ -1,0 +1,7 @@
+.sideBar.hide{
+    display: none;
+}
+.sideBar.show{
+    display: block;
+}
+

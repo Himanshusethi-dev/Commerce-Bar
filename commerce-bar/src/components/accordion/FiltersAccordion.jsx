@@ -8,29 +8,18 @@ import { filtersReducer } from '../../reducers/filtersReducer'
 const FiltersAccordion = ({ data, type,addToFilters,removeFromFilters,addOrUpdatePriceFilters }) => {
 
     const [show, setShow] = useState(false)
-
-    // useEffect(() => {
-    //     console.log('rr', type)
-    // }, [type])
-
     const manageFilters = (e,label)=>{
         if(e.target.checked){
              addToFilters(JSON.parse(e.target.value),label);
-            // console.log(e.target.value,label)
         }else{
             removeFromFilters(label)
-            console.log("removed")
         }
     }
 
     const managePriceFilter = (label,input)=>{
-
-        // console.log("pricer",input)
         addOrUpdatePriceFilters(label,input)
-
     }
-
-
+    
     return (
         <div className='filterItem'>
             <div className="filterLabel">

@@ -4,6 +4,8 @@ form.authForm {
 }
 .headingText{
     font-size: 18px;
+    text-align: center;
+    padding: 10px;
 }
 .userField {
     display: flex;
@@ -87,3 +89,26 @@ span.togglePasswordVisibility {
     transform: translateY(-50%);
 }
 
+form.authForm {
+    max-width: 350px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.options a {
+    color: #6b0a47;
+}
+
+.customerPage {
+    min-height: 100vh;
+    line-height: 30px;
+}
+
+.logOut {
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 400;
+}

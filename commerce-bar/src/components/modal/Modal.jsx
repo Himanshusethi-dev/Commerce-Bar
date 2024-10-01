@@ -10,7 +10,7 @@ const Modal = ({ isOpen, setIsOpen, children, type }) => {
       {
         isOpen && (
           createPortal(
-            <div onClick={() => { setIsOpen(false) }} className='modalOverlay'>
+            <div onClick={() => { setIsOpen(false) }} className='overlay'>
 
               <div onClick={(e)=>{e.stopPropagation()}}  className="modalBox">
                 <div className="closeModalButton">

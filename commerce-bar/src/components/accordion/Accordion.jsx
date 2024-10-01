@@ -6,20 +6,7 @@ import './accordion.css'
 const Accordion = ({fl,minPriceValue,maxPriceValue,priceRangeQuery,filterOperation,initPriceRange}) => {
 
   const [show,setShow] = useState(false)
-
-//   const currentFilters = JSON.parse(localStorage.getItem("allFiltersData"))
-  // const  handleFilterAccordion = ()=>{
-
-  // }
-
-//   useEffect(()=>{
-
-// console.log(currentFilters)
-//   },[currentFilters])
-
   return (
-    
-
     <div className="filterItem acc" >
 
     <div className="filterLabel">

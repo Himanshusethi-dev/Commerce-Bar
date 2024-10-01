@@ -29,9 +29,9 @@ const ProductList = () => {
         setAllFilters(selectedFilters)
     }
 
-    useEffect(() => {
-        console.log(allFilters)
-    }, [allFilters])
+    // useEffect(() => {
+    //     console.log(allFilters)
+    // }, [allFilters])
 
     useEffect(() => {
         getAllProducts()
@@ -39,17 +39,9 @@ const ProductList = () => {
 
     const getAllProducts = async () => {
         let filt = [sortvalue, sortOrder, allFilters]
-        // let filtObject = 
-        // {
-        //     sortvalue,
-        //     sortOrder,
-        //     allFilters
-        // }
 
         const resp = await getCollectionByHandle(JSON.stringify(handle), ...filt);
-        console.log(resp)
         setData(resp)
-        // localStorage.setItem('allFilters',JSON.stringify(filt))
     }
 
     return (

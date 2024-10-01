@@ -3,3 +3,58 @@
     position: relative;
     z-index: 10;
 }
+
+.headerBox.container {
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+}
+
+ul.headerActions {
+    max-width: 200px;
+    margin-left: auto;
+    list-style: none;
+    display: inline-flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+li.headerItem a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.headerIcon{
+    line-height: 0;
+    position: relative;
+}
+
+
+.headerIcon svg {
+    color: #6b0a47;
+}
+
+span.quantityBadge {
+    position: absolute;
+    top: -4px;
+    right: -9px;
+    color: #6b0a47;
+}
+span.headerTileValue {
+    color: #6b0a47;
+}
+
+.headerLogo {
+    width: 57px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-style: italic;
+    gap: 5px;
+    color: #6b0a47;
+    cursor: pointer;
+}
+.headerLogo img{
+    width: 100%;
+   
+}

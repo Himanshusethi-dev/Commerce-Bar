@@ -25,7 +25,7 @@ const Price = ({ data, vID }) => {
                 !!data && (
 
                     <div className="priceContainer">
-                        <span className='price'>
+                        <span className='priceValue'>
                             ₹ {priceState.price}
                         </span>
                         {

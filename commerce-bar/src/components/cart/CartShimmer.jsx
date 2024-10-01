@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import "./cartShimmer.css"
 const CartShimmer = ({side}) => {
     return (
@@ -9,10 +9,10 @@ const CartShimmer = ({side}) => {
 
                 side === 'left' ? (
 
-                    Array.from({ length: 3 }).map((item) => (
-                        <>
+                    Array.from({ length: 3 }).map((item,i) => (
+                        <Fragment key={i}>
     
-                        <div className="cartShimmerItem">
+                        <div className="cartShimmerItem" >
                         
                              <div className="cartItemBody cartShimmerBody">
                                 <div className="cartItemMedia cartShimmerMedia">
@@ -25,7 +25,7 @@ const CartShimmer = ({side}) => {
                         </div>
     
                            
-                        </>
+                        </Fragment>
                     ))
                 )
 

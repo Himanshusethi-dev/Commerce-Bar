@@ -26,7 +26,7 @@ const CartLineItem = ({ cartId, lineItem }) => {
     const [currentVariant, setCurrentVariant] = useState(null);
     const [type, setType] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-    const getLoading = useSelector((state) => state.cart.loading)
+    // const getLoading = useSelector((state) => state.cart.loading)
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -38,9 +38,9 @@ const CartLineItem = ({ cartId, lineItem }) => {
         getCurrentVariant()
     }, [selectedVariant])
 
-    useEffect(() => {
-        console.log("getLoading", getLoading)
-    }, [getLoading])
+    // useEffect(() => {
+    //     console.log("getLoading", getLoading)
+    // }, [getLoading])
 
     const getCurrentVariant = () => {
         lineItem.merchandise.product.variants.edges.forEach((item) => {
@@ -136,121 +136,115 @@ const CartLineItem = ({ cartId, lineItem }) => {
         )).unwrap()
             .then((result) => {
                 dispatch(fetchCartThunk(cartId)).unwrap().then((data) => {
-                    console.log(' deleted successfully:', data);
+                    // console.log(' deleted successfully:', data);
                 })
             })
 
     }
-    // if (getLoading) {
-    //     return <div>
-    //         <Loader>
-    //             <div className='loaderContainer'>
-    //                 <SpinningCircles stroke='#000' speed="1" fill="#000" />
-    //             </div>
-    //         </Loader>
-    //     </div>
-    // }
     const { id, merchandise, quantity, cost } = lineItem;
     return (
 
         <>
             {
 
-
-                // getLoading ? (
-                //     <>
-                //         <div>
-                //             <Loader>
-                //                 <div className='loaderContainer'>
-                //                     <SpinningCircles stroke='#000' speed="1" fill="#000" />
-                //                 </div>
-                //             </Loader>
-                //         </div>
-                //     </>
-
-                // )
-
-                //     :
-                //     (
-                        <>
-                            <div className="cartItem">
-                                <div className="cartItemMedia">
-                                    <div onClick={() => { navigate(`/products/${merchandise.product.handle}`) }} className="cartItemImage">
-                                        <img src={`${merchandise.image.url}`} alt="" />
-                                    </div>
-                                </div>
-                                <div className="cartItemInfo">
-                                    <div className="infoContent">
-                                        <div className="productVendor">
-                                            {merchandise.product.vendor}
-                                        </div>
-                                        <div onClick={() => { navigate(`/products/${merchandise.product.handle}`) }} className="cartItemTitle">
-                                            {merchandise.product.title}
-                                        </div>
-                                        <div className='itemPriceContainer' >
-                                            <span className="itemPrice">
-                                                &#8377; {Math.ceil(merchandise.price.amount)}
-                                            </span>
-                                            <span className="itemComparePrice">
-                                                &#8377;  {Math.ceil(merchandise.compareAtPrice.amount)}
-                                            </span>
-                                        </div>
-
-                                        <div className="cartLineItemQuantityAndVariantContainer">
-                                            <div className="cartItemQuantity">
-
-                                                <button onClick={(() => { handleModals(modalOptions.quantity) })} className='quantityUpdateButton'>
-                                                    Quantity :   {quantity} <MdArrowDropDown />
-                                                </button>
-                                            </div>
-
-                                            <div className="cartItemVariant">
-                                                {
-                                                    merchandise.product.variants.edges.length > 1 ? (
-                                                        <button onClick={(() => { handleModals(modalOptions.variant) })} className='variantChangeButton'>
-                                                            {currentVariant}
-                                                            <MdArrowDropDown />
-                                                        </button>
-                                                    ) : (
-
-                                                        <div>
-                                                            Variant <span className='singleVariantItem'>{currentVariant} </span>
-                                                        </div>
-                                                    )
-                                                }
-
-                                                {/* {selectedVariant} */}
-                                            </div>
-
-                                        </div>
-
-                                        <div className="totalItemLineCost">
-                                            Total : <span className='totalAmount'>&#8377; {Math.ceil(cost.totalAmount.amount)} </span>
-                                        </div>
-                                        <Modal isOpen={isOpen} setIsOpen={setIsOpen} type={type}  >
-
-                                            {
-                                                type === modalOptions.quantity ? (
-                                                    <SelectorButtons type={type} setIsOpen={setIsOpen} limit={quantityLimitArr} selectedValue={selectedQuantity} updateValue={updateSelectedOptions} />
-                                                ) : (
-                                                    // 
-                                                    <div>
-                                                        <SelectorButtons type={type} setIsOpen={setIsOpen} limit={lineItemVariants} selectedValue={selectedVariant} updateValue={updateSelectedOptions} />
-                                                    </div>
-                                                )
-                                            }
-                                        </Modal>
-                                    </div>
-
-                                </div>
-
-                                <div onClick={() => { deleteCartItem(id) }} className="deleteButton">
-                                    <MdDelete />
-                                </div>
-
+                <>
+                    <div className="cartItem">
+                        <div className="cartItemMedia">
+                            <div onClick={() => { navigate(`/products/${merchandise.product.handle}`) }} className="cartItemImage">
+                                <img src={`${merchandise.image.url}`} alt="" />
                             </div>
-                        </>
-                    // )
+                        </div>
+                        <div className="cartItemInfo">
+                            <div className="infoContent">
+                                <div className="productVendor">
+                                    {merchandise.product.vendor}
+                                </div>
+                                <div onClick={() => { navigate(`/products/${merchandise.product.handle}`) }} className="cartItemTitle">
+                                    {merchandise.product.title}
+                                </div>
+                                <div className='itemPriceContainer' >
+                                    <span className="itemPrice">
+                                        &#8377; {Math.ceil(merchandise.price.amount)}
+                                    </span>
+                                    <span className="itemComparePrice">
+                                        &#8377;  {Math.ceil(merchandise.compareAtPrice.amount)}
+                                    </span>
+                                </div>
+
+                                <div className="cartLineItemQuantityAndVariantContainer">
+                                    <div className="cartItemQuantity">
+                                        <button onClick={(() => { handleModals(modalOptions.quantity) })} className='quantityUpdateButton'>
+                                            <span className='quantityLabel'>
+                                                <span>
+                                                    QTY
+                                                </span>
+                                                <span>
+                                                    :
+                                                </span>
+                                            </span>
+
+                                            <span className='quantityValue'>
+                                                <span>
+                                                    {quantity}
+                                                </span>
+                                                <span>
+                                                    <MdArrowDropDown />
+                                                </span>
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <div className="cartItemVariant">
+                                        {
+                                            merchandise.product.variants.edges.length > 1 ? (
+                                                <button onClick={(() => { handleModals(modalOptions.variant) })} className='variantChangeButton'>
+                                                    <span className='cartVariantValue'>
+                                                        {currentVariant}
+                                                    </span>
+                                                    <span>
+                                                        <MdArrowDropDown />
+                                                    </span>
+                                                </button>
+                                            ) : (
+
+                                                <div>
+                                                    Variant <span className='singleVariantItem'>{currentVariant} </span>
+                                                </div>
+                                            )
+                                        }
+
+                                        {/* {selectedVariant} */}
+                                    </div>
+
+                                </div>
+
+                                <div className="totalItemLineCost">
+                                    Total : <span className='totalAmount'>&#8377; {Math.ceil(cost.totalAmount.amount)} </span>
+                                </div>
+                                <Modal isOpen={isOpen} setIsOpen={setIsOpen} type={type}  >
+
+                                    {
+                                        type === modalOptions.quantity ? (
+                                            <SelectorButtons type={type} setIsOpen={setIsOpen} limit={quantityLimitArr} selectedValue={selectedQuantity} updateValue={updateSelectedOptions} />
+                                        ) : (
+                                            // 
+                                            <div>
+                                                <SelectorButtons type={type} setIsOpen={setIsOpen} limit={lineItemVariants} selectedValue={selectedVariant} updateValue={updateSelectedOptions} />
+                                            </div>
+                                        )
+                                    }
+                                </Modal>
+                            </div>
+
+                        </div>
+
+                        <div onClick={() => { deleteCartItem(id) }} className="deleteButton">
+                            <MdDelete />
+                        </div>
+
+                    </div>
+                </>
+                // )
             }
 
 
